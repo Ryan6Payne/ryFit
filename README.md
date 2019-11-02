@@ -1,2 +1,0 @@
-# ryFit
-Final Year Project
