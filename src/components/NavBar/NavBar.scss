@@ -1,0 +1,21 @@
+.NavBar {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 2em;
+  margin-right: 15%;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: #000000;
+}
+
+.NavBar > ul > li {
+  display: inline-block;
+  padding: 15px;
+}
+
+.active {
+  background-color: lightgrey;
+  padding-bottom: 5px;
+}

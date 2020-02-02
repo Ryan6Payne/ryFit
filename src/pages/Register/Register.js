@@ -6,6 +6,15 @@ function Register(props) {
   const [password, setPassword] = useState('');
   const { history } = props;
 
+  async function fbRegister() {
+    try {
+      await FB.register(email, password);
+      history.push('/');
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   return (
     <div>
       <h1>Register</h1>
@@ -38,15 +47,6 @@ function Register(props) {
       </form>
     </div>
   );
-
-  async function fbRegister() {
-    try {
-      await FB.register(email, password);
-      history.push('/');
-    } catch (error) {
-      alert(error.message);
-    }
-  }
 }
 
 export default Register;

@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import FB from '../../config/config';
 
-export default function Login(props) {
+function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { history } = props;
+
+  async function fbLogin() {
+    try {
+      await FB.login(email, password);
+      history.push('/');
+    } catch (error) {
+      alert(error.message);
+    }
+  }
 
   return (
     <div>
@@ -38,13 +47,6 @@ export default function Login(props) {
       </form>
     </div>
   );
-
-  async function fbLogin() {
-    try {
-      await FB.login(email, password);
-      history.push('/');
-    } catch (error) {
-      alert(error.message);
-    }
-  }
 }
+
+export default Login

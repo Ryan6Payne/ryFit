@@ -35,6 +35,13 @@ class FB {
       });
     return reg;
   }
+
+  async logout() {
+    await this.auth.signOut().catch(error => {
+      console.log(error)
+    })
+  }
 }
+
 
 export default new FB();
