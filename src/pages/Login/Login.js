@@ -9,7 +9,7 @@ function Login(props) {
   async function fbLogin() {
     try {
       await FB.login(email, password);
-      history.push('/');
+      history.push('/dashboard');
     } catch (error) {
       alert(error.message);
     }

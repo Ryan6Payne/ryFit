@@ -27,17 +27,17 @@ const NavBar = ({ history }) => {
 
     return (
         <div>
-            <div className="NavBar">
-                <ul>
-                    <li><NavLink exact to="/" activeClassName="active" className="nav-links">Home</NavLink></li>
-                    {signedIn && <li><NavLink to="/Dashboard" activeClassName="active" className="nav-links">Dashboard</NavLink></li>}
-                    {signedIn && <li><NavLink to="/Workoutcalc" activeClassName="active" className="nav-links">Workout Calculator</NavLink></li>}
-                    {signedIn && <li><NavLink to="/Profile" activeClassName="active" className="nav-links">Profile</NavLink></li>}
-                    {signedIn && <li><NavLink to="/Users" activeClassName="active" className="nav-links">Users</NavLink></li>}
-                    {!signedIn && <li><NavLink to="/Register" activeClassName="active" className="nav-links">Register</NavLink></li>}
-                    {signedIn ? <button type="submit" onClick={logout}>Log Out</button> : <li><NavLink to="/Login" activeClassName="active" className="nav-links">Login</NavLink></li>}
+            <nav>
+                <div className="logo"><h4><NavLink exact to="/">RyFit</NavLink></h4></div>
+                <ul className="nav-links">
+                    {signedIn && <li><NavLink to="/Dashboard">Dashboard</NavLink></li>}
+                    {signedIn && <li><NavLink to="/Workoutcalc" >Workout Calculator</NavLink></li>}
+                    {signedIn && <li><NavLink to="/Profile" >Profile</NavLink></li>}
+                    {signedIn && <li><NavLink to="/Users" >Users</NavLink></li>}
+                    {!signedIn && <li><NavLink to="/Register" >Register</NavLink></li>}
+                    {signedIn ? <li onClick={logout}><NavLink to="/">Logout</NavLink></li> : <li><NavLink to="/Login" >Login</NavLink></li>}
                 </ul>
-            </div>
+            </nav>
             <Routes userStatus={signedIn} />
         </div>
     )
