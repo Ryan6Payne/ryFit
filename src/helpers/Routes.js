@@ -11,7 +11,7 @@ import Register from '../pages/Register/Register';
 // import Registerprof from '../pages/Registerprof/Registerprof';
 import Users from '../pages/Users/Users';
 import Workout from '../pages/Workout/Workout';
-import Workoutcalc from '../pages/Workoutcalc/WorkoutCalc';
+import Workoutcalc from '../pages/Workoutcalc/Workoutcalc';
 import NotFound from '../pages/NotFound/NotFound';
 
 const Routes = ({ userStatus }) => {
