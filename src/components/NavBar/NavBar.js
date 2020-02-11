@@ -4,18 +4,21 @@ import FB from '../../config/config'
 import Routes from '../../helpers/Routes'
 import './NavBar.scss'
 
-const NavBar = () => {
-    const [signedIn, setSignedIn] = useState([], () => {
-        const data = localStorage.getItem('userDetails')
-        return data ? JSON.parse(data) : []
-    });
+const NavBar = ({ history }) => {
+    const [signedIn, setSignedIn] = useState(false)
+    const [isAuthenticating, setIsAuthenticating] = useState(true)
+
 
     useEffect(() => {
-        FB.auth.onAuthStateChanged(setSignedIn)
-        localStorage.setItem('userDetails', JSON.stringify(signedIn))
-    }, [signedIn]);
-
-    //Ensure ^ didnt mess anything up
+        FB.auth.onAuthStateChanged(user => {
+            if (user) {
+                setSignedIn(true)
+                setIsAuthenticating(false)
+            } else {
+                setIsAuthenticating(false)
+            }
+        })
+    }, [])
 
     async function logout() {
         await FB.logout()
