@@ -27,13 +27,31 @@ class FB {
     return user;
   }
 
-  async register(email, password) {
-    const reg = await this.auth
+  register(email, password) {
+    return this.auth
       .createUserWithEmailAndPassword(email, password)
-      .catch(error => {
-        console.log(error);
-      });
-    return reg;
+      .then(this.addUser);
+  }
+
+  /* called as part of the registration process to initialize database document (auth uid == db uid)*/
+  addUser = ({ user }) => {
+    try {
+      return this.db.collection("users")
+        .doc(`${user.uid}`)
+        .set({
+          currentWeight: 0,
+          dobDay: 0,
+          dobMonth: 0,
+          dobYear: 0,
+          email: user.email,
+          gender: true,
+          heightFt: 0,
+          heightIn: 0
+        });
+    }
+    catch (error) {
+      console.error("Error adding document: ", error);
+    }
   }
 
   async logout() {
@@ -42,6 +60,8 @@ class FB {
     })
   }
 }
+
+
 
 
 export default new FB();
