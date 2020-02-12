@@ -25,6 +25,8 @@ const NavBar = ({ history }) => {
         setSignedIn(false)
     }
 
+    if (isAuthenticating) { return null }
+
     return (
         <div>
             <nav>
