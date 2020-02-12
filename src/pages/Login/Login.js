@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import FB from '../../config/config';
+import './Login.scss';
+import { Link } from 'react-router-dom';
+
+/* Material-ui imports */
+import { Paper } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 function Login(props) {
   const [email, setEmail] = useState('');
@@ -16,22 +24,20 @@ function Login(props) {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={e => e.preventDefault() && false}>
-        <div>
-          <label for="email">Email</label>
-          <input
+    <form className="container" onSubmit={e => e.preventDefault() && false}>
+      <Paper className="paper" elevation={3}>
+        <Typography variant="h4">Login</Typography>
+        <div className="inputs">
+          <TextField className="TextField"
+            label="Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
             type="email"
             name="email"
             placeholder="Enter your E-mail Address"
           />
-        </div>
-        <div>
-          <label for="password">Password</label>
-          <input
+          <TextField className="TextField"
+            label="Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
             type="password"
@@ -39,13 +45,19 @@ function Login(props) {
             placeholder="Enter your Password"
           />
         </div>
-        <div>
-          <button type="submit" onClick={fbLogin}>
+        <div className="buttons">
+          <Button className="button" variant="outlined" color="primary" type="submit" onClick={fbLogin}>
             Log In
-          </button>
+          </Button>
+          <p className="spacer"></p>
+          <Link className="link" to="/register">
+            <Button className="button" variant="outlined" color="secondary">
+              Register
+          </Button>
+          </Link>
         </div>
-      </form>
-    </div>
+      </Paper>
+    </form >
   );
 }
 

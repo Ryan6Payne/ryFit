@@ -1,0 +1,44 @@
+.TextField {
+  width: 300px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.inputs {
+  padding-bottom: 15px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 320px;
+  max-width: 400px;
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+.paper {
+  padding: 20;
+  overflow: auto;
+  padding: 10%;
+}
+
+.button {
+  width: 300px;
+}
+
+.spacer {
+  margin: 6px;
+}
+
+.buttons {
+  padding-top: 10px;
+}
+
+.link {
+  text-decoration: none;
+}

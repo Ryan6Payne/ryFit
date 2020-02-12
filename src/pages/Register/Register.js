@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import FB from '../../config/config';
 
+import './Register.scss';
+import { Link } from 'react-router-dom';
+
+/* Material-ui imports */
+import { Paper } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+
+
 function Register(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,36 +26,34 @@ function Register(props) {
   }
 
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={e => e.preventDefault() && false}>
-        <div>
-          <label for="email">Email</label>
-          <input
+    <form className="container" onSubmit={e => e.preventDefault() && false}>
+      <Paper className="paper" elevation={3}>
+        <Typography variant="h4">Register</Typography>
+        <div className="inputs">
+          <TextField className="TextField"
+            label="Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
             type="email"
             name="email"
-            placeholder="Enter an E-Mail Address"
+            placeholder="Enter your E-mail Address"
           />
-        </div>
-        <div>
-          <label for="password">Password</label>
-          <input
+          <TextField className="TextField"
+            label="Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
             type="password"
             name="password"
-            placeholder="Enter a password"
+            placeholder="Enter your Password"
           />
         </div>
-        <div>
-          <button type="submit" onClick={fbRegister}>
+        <div className="buttons">
+          <Button className="button" variant="outlined" color="primary" type="submit" onClick={fbRegister}>
             Register
-          </button>
+          </Button>
         </div>
-      </form>
-    </div>
+      </Paper>
+    </form >
   );
 }
 
