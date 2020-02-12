@@ -30,12 +30,12 @@ const NavBar = ({ history }) => {
             <nav>
                 <div className="logo"><h4><NavLink exact to="/">RyFit</NavLink></h4></div>
                 <ul className="nav-links">
-                    {signedIn && <li><NavLink to="/Dashboard">Dashboard</NavLink></li>}
-                    {signedIn && <li><NavLink to="/Workoutcalc" >Workout Calculator</NavLink></li>}
-                    {signedIn && <li><NavLink to="/Profile" >Profile</NavLink></li>}
-                    {signedIn && <li><NavLink to="/Users" >Users</NavLink></li>}
-                    {!signedIn && <li><NavLink to="/Register" >Register</NavLink></li>}
-                    {signedIn ? <li onClick={logout}><NavLink to="/">Logout</NavLink></li> : <li><NavLink to="/Login" >Login</NavLink></li>}
+                    {signedIn && <li><NavLink to="/dashboard">Dashboard</NavLink></li>}
+                    {signedIn && <li><NavLink to="/workoutcalc" >Workout Calculator</NavLink></li>}
+                    {signedIn && <li><NavLink to="/profile" >Profile</NavLink></li>}
+                    {signedIn && <li><NavLink to="/users" >Users</NavLink></li>}
+                    {!signedIn && <li><NavLink to="/register" >Register</NavLink></li>}
+                    {signedIn ? <li onClick={logout}><NavLink to="/">Logout</NavLink></li> : <li><NavLink to="/login" >Login</NavLink></li>}
                 </ul>
             </nav>
             <Routes userStatus={signedIn} />

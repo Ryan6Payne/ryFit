@@ -25,7 +25,7 @@ function Login(props) {
 
   return (
     <form className="container" onSubmit={e => e.preventDefault() && false}>
-      <Paper className="paper" elevation={3}>
+      <Paper className="paper" elevation={20}>
         <Typography variant="h4">Login</Typography>
         <div className="inputs">
           <TextField className="TextField"

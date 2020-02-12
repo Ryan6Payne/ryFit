@@ -14,20 +14,25 @@ import { Button } from '@material-ui/core';
 function Register(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rpassword, setRPassword] = useState('');
   const { history } = props;
 
   async function fbRegister() {
-    try {
-      await FB.register(email, password);
-      history.push('/');
-    } catch (error) {
-      alert(error.message);
+    if (password === rpassword) {
+      try {
+        await FB.register(email, password);
+        history.push('/dashboard');
+      } catch (error) {
+        alert(error.message);
+      }
+    } else {
+      alert("Your passwords do not match")
     }
   }
 
   return (
     <form className="container" onSubmit={e => e.preventDefault() && false}>
-      <Paper className="paper" elevation={3}>
+      <Paper className="paper" elevation={20}>
         <Typography variant="h4">Register</Typography>
         <div className="inputs">
           <TextField className="TextField"
@@ -45,6 +50,15 @@ function Register(props) {
             type="password"
             name="password"
             placeholder="Enter your Password"
+          />
+          <TextField className="TextField"
+            label="Repeat your password"
+            value={rpassword}
+            onChange={e => setRPassword(e.target.value)}
+            type="password"
+            name="rpassword"
+            placeholder="Please repeat your password"
+          /* helperText={rpassword !== password ? "Password does not match" : ""} */
           />
         </div>
         <div className="buttons">
