@@ -21,7 +21,7 @@ function Register(props) {
     if (password === rpassword) {
       try {
         await FB.register(email, password);
-        history.push('/dashboard');
+        history.push('/registerprof');
       } catch (error) {
         alert(error.message);
       }

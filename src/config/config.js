@@ -45,6 +45,7 @@ class FB {
           dobYear: 0,
           email: user.email,
           gender: true,
+          goalWeight: 0,
           heightFt: 0,
           heightIn: 0
         });
@@ -54,14 +55,33 @@ class FB {
     }
   }
 
+  /* CR(U)D part of the registration process. This function will also be called on the profile page where the user can update their details */
+  updateUser(heightFt, heightIn, currentWeight, goalWeight, gender, dobDay, dobMonth, dobYear) {
+    var user = Firebase.auth().currentUser;
+    try {
+      return this.db.collection("users")
+        .doc(`${user.uid}`)
+        .set({
+          currentWeight: currentWeight,
+          dobDay: dobDay,
+          dobMonth: dobMonth,
+          dobYear: dobYear,
+          gender: gender,
+          email: user.email,
+          goalWeight: goalWeight,
+          heightFt: heightFt,
+          heightIn: heightIn
+        })
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  }
+
   async logout() {
     await this.auth.signOut().catch(error => {
       console.log(error)
     })
   }
 }
-
-
-
 
 export default new FB();
