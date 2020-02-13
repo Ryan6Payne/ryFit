@@ -77,6 +77,16 @@ class FB {
     }
   }
 
+  getUsername() {
+    return Firebase.auth().currentUser && Firebase.auth().currentUser.displayName
+  }
+
+  updateName(displayName) {
+    return Firebase.auth().currentUser.updateProfile({
+      displayName: displayName
+    })
+  }
+
   async logout() {
     await this.auth.signOut().catch(error => {
       console.log(error)

@@ -22,10 +22,13 @@ function RegisterProf(props) {
   const [dobDay, setDobDay] = useState(null);
   const [dobMonth, setDobMonth] = useState(null);
   const [dobYear, setDobYear] = useState(null);
+  const [name, setName] = useState('');
+
 
   async function registerUser() {
     try {
       await FB.updateUser(heightFt, heightIn, currentWeight, goalWeight, gender, dobDay, dobMonth, dobYear);
+      await FB.updateName(name);
       history.push('/dashboard')
     } catch (error) {
       alert(error.message);
@@ -37,6 +40,10 @@ function RegisterProf(props) {
       <form onSubmit={e => e.preventDefault() && false}>
         <Paper className="paper" elevation={20}>
           <Typography className="Typo" variant="h4">Tell us more about yourself</Typography>
+          <div className="input">
+            <p> Name </p>
+            <TextField className="inputtf" id="outlined-basic" label="Full Name" variant="outlined" onChange={e => setName(e.target.value)} />
+          </div>
           <div className="input">
             <p> Height: </p>
             <TextField className="inputtf" id="outlined-basic" label="Ft" variant="outlined" onChange={e => setHeightFt(e.target.value)} />

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import FB from '../../config/config'
 
 class Profile extends Component {
   render() {
     return (
       <div>
+        <h1>Welcome {FB.getUsername()}!</h1>
         <h1>Profile</h1>
         <p>This page will include:</p>
         <ul>
