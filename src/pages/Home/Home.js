@@ -1,19 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
+import './Home.scss';
 
-class Home extends Component {
-  render() {
-    return (
+function Home(props) {
+  return (
+    <div className="container-home">
       <div>
-        <h1>Welcome (page to be completed near the end due to low importance)</h1>
-        <p>This page will include:</p>
-        <ul>
-          <li>Overview of RyFit</li>
-          <li>Central register/login component</li>
-          <li>Unable to go to this page if logged in, will redirect to dashboard</li>
-        </ul>
+        <h1 className="home-h1">RyFit</h1>
+        <div className="inspire">
+          <h2>Discover your optimal calorie intake and generate a workout today</h2>
+        </div>
+        <div className="button-section">
+          <Link className="link" to="/register">
+            <Button className="button" size="large" variant="outlined" color="primary">
+              Sign up here
+          </Button>
+          </Link>
+        </div>
       </div>
-    );
-  }
+    </div>
+  )
 }
 
 export default Home;

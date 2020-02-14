@@ -31,7 +31,7 @@ function Register(props) {
   }
 
   return (
-    <form className="container" onSubmit={e => e.preventDefault() && false}>
+    <form className="container-register" onSubmit={e => e.preventDefault() && false}>
       <Paper className="paper" elevation={20}>
         <Typography variant="h4">Register</Typography>
         <div className="inputs">

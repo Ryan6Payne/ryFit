@@ -1,41 +1,34 @@
-.TextField {
-  width: 300px;
-  margin-top: 0;
-  margin-bottom: 0;
+.home-h1 {
+  margin: 0;
+  font-size: 120px;
+  margin-bottom: 5px;
+  font-family: 'Noto Sans HK', sans-serif;
 }
 
-.inputs {
+.inspire {
   padding-bottom: 15px;
 }
 
-.container-login {
+.container-home {
   display: flex;
   flex-wrap: wrap;
   min-width: 320px;
-  max-width: 400px;
+  max-width: 500px;
   position: absolute;
-  top: 30%;
   left: 0;
   right: 0;
   margin: auto;
   text-align: center;
-}
-
-.paper {
-  padding: 20;
   overflow: auto;
-  padding: 10%;
+  margin-top: 10%;
 }
 
 .button {
   width: 300px;
+  text-decoration: underline;
 }
 
-.spacer {
-  margin: 6px;
-}
-
-.buttons {
+.button-section {
   padding-top: 10px;
 }
 
