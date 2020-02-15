@@ -7,7 +7,7 @@ import Dashboard from '../pages/Dashboard/Dashboard'
 import Login from '../pages/Login/Login'
 import Profile from '../pages/Profile/Profile';
 import Register from '../pages/Register/Register';
-import Registergoals from '../pages/Registergoals/Registergoals';
+//import Registergoals from '../pages/Registergoals/Registergoals';
 import Registerprof from '../pages/Registerprof/Registerprof';
 import Users from '../pages/Users/Users';
 import Workout from '../pages/Workout/Workout';

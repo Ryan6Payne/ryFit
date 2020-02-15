@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import FB from '../../config/config';
 
 import './Register.scss';
-import { Link } from 'react-router-dom';
 
 /* Material-ui imports */
 import { Paper } from '@material-ui/core';

@@ -2,10 +2,10 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 8vh;
-  background-color: black;
+  height: 8%;
   width: 100%;
   background-color: #36a1b6;
+  z-index: 1;
 }
 
 .logo {

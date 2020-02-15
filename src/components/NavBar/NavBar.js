@@ -8,7 +8,6 @@ const NavBar = ({ history }) => {
     const [signedIn, setSignedIn] = useState(false)
     const [isAuthenticating, setIsAuthenticating] = useState(true)
 
-
     useEffect(() => {
         FB.auth.onAuthStateChanged(user => {
             if (user) {

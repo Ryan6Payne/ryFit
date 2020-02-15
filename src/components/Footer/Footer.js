@@ -3,11 +3,11 @@ import './Footer.scss';
 
 function Footer(props) {
     return (
-        <footer className="footer">
+        <div className="footer">
             <div>
-                <p>P16200083 - Ryan Payne</p>
+                <p className="f-text">P16200083 - Ryan Payne</p>
             </div>
-        </footer>
+        </div>
     );
 }
 
