@@ -24,10 +24,13 @@ function RegisterProf(props) {
   const [dobYear, setDobYear] = useState(null);
   const [name, setName] = useState('');
 
+  const firstName = name.split(" ")[0];
+  const secondName = name.split(" ")[1];
 
   async function registerUser() {
     try {
-      await FB.updateUser(heightFt, heightIn, currentWeight, goalWeight, gender, dobDay, dobMonth, dobYear);
+      await FB.updateUser(firstName, secondName, heightFt, heightIn, currentWeight,
+        goalWeight, gender, dobDay, dobMonth, dobYear);
       await FB.updateName(name);
       history.push('/dashboard')
     } catch (error) {

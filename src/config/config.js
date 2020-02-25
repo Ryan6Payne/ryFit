@@ -39,6 +39,8 @@ class FB {
       return this.db.collection("users")
         .doc(`${user.uid}`)
         .set({
+          firstName: "",
+          secondName: "",
           currentWeight: 0,
           dobDay: 0,
           dobMonth: 0,
@@ -56,12 +58,14 @@ class FB {
   }
 
   /* CR(U)D part of the registration process. This function will also be called on the profile page where the user can update their details */
-  updateUser(heightFt, heightIn, currentWeight, goalWeight, gender, dobDay, dobMonth, dobYear) {
-    var user = Firebase.auth().currentUser;
+  updateUser(firstName, secondName, heightFt, heightIn, currentWeight, goalWeight, gender, dobDay, dobMonth, dobYear) {
+    var user = this.auth.currentUser;
     try {
       return this.db.collection("users")
         .doc(`${user.uid}`)
         .set({
+          firstName: firstName,
+          secondName: secondName,
           currentWeight: currentWeight,
           dobDay: dobDay,
           dobMonth: dobMonth,
@@ -77,14 +81,28 @@ class FB {
     }
   }
 
+  /* C(R)UD */
+  async getUserField(field) {
+    const data = await this.db.doc(`users/${this.auth.currentUser.uid}`).get()
+    return data.get(field)
+  }
+
   getUsername() {
-    return Firebase.auth().currentUser && Firebase.auth().currentUser.displayName
+    return this.auth.currentUser && this.auth.currentUser.displayName
   }
 
   updateName(displayName) {
-    return Firebase.auth().currentUser.updateProfile({
+    return this.auth.currentUser.updateProfile({
       displayName: displayName
     })
+  }
+
+  getUserInitials() {
+    return this.auth.currentUser.displayName
+      .split(" ")
+      .map(x => x.charAt(0))
+      .join("")
+      .toUpperCase()
   }
 
   async logout() {
