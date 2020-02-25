@@ -2,13 +2,34 @@
   height: 92%;
 }
 
-.full-container-profile {
-  text-align: center;
+.header-container-profile {
+  padding-top: 50px;
 }
 
 .profile-picture {
   width: 15%;
   text-align: center;
   margin: 0 auto;
-  padding-top: 50px;
+}
+
+.content-container-profile {
+  height: 500px;
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 30px;
+}
+
+.update-details-profile {
+  /* border: 1px black solid; */
+  width: 30%;
+}
+
+.progress-profile {
+  /* border: 1px black solid; */
+  width: 30%;
+}
+
+.profile-h4-typo {
+  text-align: center;
+  padding-top: 20px;
 }

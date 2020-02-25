@@ -18,8 +18,7 @@ export default function Profile() {
 
   return (
     <div className="full-container-profile">
-      <div className="inner-container-profile">
-
+      <div className="header-container-profile">
         <Paper elevation={0} className="profile-picture">
           <input
             accept="image/*"
@@ -51,7 +50,19 @@ export default function Profile() {
             </Avatar>
           </Badge>
         </Paper>
+        <div className="content-container-profile">
+          <Paper elevation={20} className="update-details-profile">
+            <Typography className="profile-h4-typo" variant="h5">
+              Update your details
+            </Typography>
 
+          </Paper>
+          <Paper elevation={20} className="progress-profile">
+            <Typography className="profile-h4-typo" variant="h5">
+              Your progress
+            </Typography>
+          </Paper>
+        </div>
       </div>
     </div>
   );
@@ -63,7 +74,8 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     width: theme.spacing(20),
     height: theme.spacing(20),
-    fontSize: 40
+    fontSize: 40,
+
   },
 
   input: {
