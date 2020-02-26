@@ -7,16 +7,20 @@ import './NavBar.scss'
 const NavBar = ({ history }) => {
     const [signedIn, setSignedIn] = useState(false)
     const [isAuthenticating, setIsAuthenticating] = useState(true)
+    const [isAdmin, setIsAdmin] = useState(false)
 
     useEffect(() => {
         FB.auth.onAuthStateChanged(user => {
             if (user) {
                 setSignedIn(true)
                 setIsAuthenticating(false)
+                FB.getUserField("isAdmin").then(setIsAdmin)
+                console.log(isAdmin)
             } else {
                 setIsAuthenticating(false)
             }
         })
+
     }, [])
 
     async function logout() {
@@ -34,12 +38,12 @@ const NavBar = ({ history }) => {
                     {signedIn && <li><NavLink to="/dashboard">Dashboard</NavLink></li>}
                     {signedIn && <li><NavLink to="/workoutcalc" >Workout Calculator</NavLink></li>}
                     {signedIn && <li><NavLink to="/profile" >Profile</NavLink></li>}
-                    {signedIn && <li><NavLink to="/users" >Users</NavLink></li>}
+                    {signedIn && isAdmin && <li><NavLink to="/users" >Users</NavLink></li>}
                     {!signedIn && <li><NavLink to="/register" >Register</NavLink></li>}
                     {signedIn ? <li onClick={logout}><NavLink to="/">Logout</NavLink></li> : <li><NavLink to="/login" >Login</NavLink></li>}
                 </ul>
             </nav>
-            <Routes userStatus={signedIn} />
+            <Routes userStatus={signedIn} isAdmin={isAdmin} />
         </div>
     )
 }

@@ -65,7 +65,7 @@ class FB {
     try {
       return this.db.collection("users")
         .doc(`${user.uid}`)
-        .set({
+        .update({
           fullName: fullName,
           firstName: firstName,
           secondName: secondName,

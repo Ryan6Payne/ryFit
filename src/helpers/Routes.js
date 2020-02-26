@@ -14,12 +14,12 @@ import Workout from '../pages/Workout/Workout';
 import Workoutcalc from '../pages/Workoutcalc/WorkoutCalc';
 import NotFound from '../pages/NotFound/NotFound';
 
-const Routes = ({ userStatus }) => {
+const Routes = ({ userStatus, isAdmin }) => {
     return (
         <Switch>
             <PrivateRoute isLoggedIn={userStatus} exact path="/dashboard" component={Dashboard} />
             <PrivateRoute isLoggedIn={userStatus} exact path="/profile" component={Profile} />
-            <PrivateRoute isLoggedIn={userStatus} exact path="/users" component={Users} />
+            <PrivateRoute isLoggedIn={isAdmin} exact path="/users" component={Users} />
             <PrivateRoute isLoggedIn={userStatus} exact path="/workout" component={Workout} />
             <PrivateRoute isLoggedIn={userStatus} exact path="/workoutcalc" component={Workoutcalc} />
             <PrivateRoute isLoggedIn={userStatus} exact path="/registerprof" component={Registerprof} />
