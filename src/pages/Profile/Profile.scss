@@ -13,23 +13,62 @@
 }
 
 .content-container-profile {
-  height: 500px;
   display: flex;
   justify-content: space-evenly;
-  padding-top: 30px;
 }
 
 .update-details-profile {
-  /* border: 1px black solid; */
+  border: 1px black solid;
   width: 30%;
+  padding-bottom: 10px;
 }
 
 .progress-profile {
-  /* border: 1px black solid; */
+  border: 1px black solid;
   width: 30%;
+  padding-bottom: 50px;
 }
 
 .profile-h4-typo {
   text-align: center;
   padding-top: 20px;
+}
+
+.profile-input-name {
+  flex-wrap: wrap;
+  display: flex;
+  margin-top: 15px;
+}
+
+.profile-input {
+  flex-wrap: wrap;
+  display: flex;
+  margin-top: 15px;
+}
+
+.profile-inputs {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.profile-input-selector {
+  padding-left: 10px;
+}
+
+.profile-inputtf {
+  width: 100px;
+}
+
+.inputtf-name {
+  width: 180px;
+}
+
+.profile-buttons {
+  padding-top: 40px;
+  padding-right: 10px;
+  text-align: end;
+}
+
+.profile-update-button {
+  width: 120px;
 }

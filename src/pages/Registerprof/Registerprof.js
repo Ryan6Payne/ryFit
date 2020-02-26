@@ -22,16 +22,15 @@ function RegisterProf(props) {
   const [dobDay, setDobDay] = useState(null);
   const [dobMonth, setDobMonth] = useState(null);
   const [dobYear, setDobYear] = useState(null);
-  const [name, setName] = useState('');
-
-  const firstName = name.split(" ")[0];
-  const secondName = name.split(" ")[1];
+  const [fullName, setFullName] = useState('');
+  const firstName = fullName.split(" ")[0];
+  const secondName = fullName.split(" ")[1];
 
   async function registerUser() {
     try {
-      await FB.updateUser(firstName, secondName, heightFt, heightIn, currentWeight,
+      await FB.updateUser(fullName, firstName, secondName, heightFt, heightIn, currentWeight,
         goalWeight, gender, dobDay, dobMonth, dobYear);
-      await FB.updateName(name);
+      await FB.updateName(fullName);
       history.push('/dashboard')
     } catch (error) {
       alert(error.message);
@@ -45,7 +44,7 @@ function RegisterProf(props) {
           <Typography className="Typo" variant="h4">Tell us more about yourself</Typography>
           <div className="input">
             <p> Name </p>
-            <TextField className="inputtf" id="outlined-basic" label="Full Name" variant="outlined" onChange={e => setName(e.target.value)} />
+            <TextField className="inputtf-name" id="outlined-basic" label="Full Name" variant="outlined" onChange={e => setFullName(e.target.value)} />
           </div>
           <div className="input">
             <p> Height: </p>
@@ -66,8 +65,8 @@ function RegisterProf(props) {
               <div className="input">
                 <p>Gender: </p>
                 <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
+                  labelId="gender-select"
+                  id="gender-select"
                   value={gender}
                   onChange={e => setGender(e.target.value)}
                   className="select"
@@ -83,8 +82,8 @@ function RegisterProf(props) {
               <div className="input">
                 <p>Date of Birth: </p>
                 <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
+                  labelId="dob-day-select"
+                  id="dob-day-select"
                   value={dobDay}
                   onChange={e => setDobDay(e.target.value)}
                   className="selectDobDay"
@@ -123,8 +122,8 @@ function RegisterProf(props) {
                 </Select>
                 <p></p>
                 <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
+                  labelId="dob-month-select"
+                  id="dob-month-select"
                   value={dobMonth}
                   onChange={e => setDobMonth(e.target.value)}
                   className="selectDobMonth"
@@ -144,8 +143,8 @@ function RegisterProf(props) {
                 </Select>
                 <p></p>
                 <Select
-                  labelId="demo-simple-select-outlined-label"
-                  id="demo-simple-select-outlined"
+                  labelId="dob-year-select"
+                  id="dob-year-select"
                   value={dobYear}
                   onChange={e => setDobYear(e.target.value)}
                   className="selectDobYear"

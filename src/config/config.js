@@ -39,6 +39,7 @@ class FB {
       return this.db.collection("users")
         .doc(`${user.uid}`)
         .set({
+          fullName: "",
           firstName: "",
           secondName: "",
           currentWeight: 0,
@@ -49,7 +50,8 @@ class FB {
           gender: true,
           goalWeight: 0,
           heightFt: 0,
-          heightIn: 0
+          heightIn: 0,
+          isAdmin: false
         });
     }
     catch (error) {
@@ -58,12 +60,13 @@ class FB {
   }
 
   /* CR(U)D part of the registration process. This function will also be called on the profile page where the user can update their details */
-  updateUser(firstName, secondName, heightFt, heightIn, currentWeight, goalWeight, gender, dobDay, dobMonth, dobYear) {
+  updateUser(fullName, firstName, secondName, heightFt, heightIn, currentWeight, goalWeight, gender, dobDay, dobMonth, dobYear) {
     var user = this.auth.currentUser;
     try {
       return this.db.collection("users")
         .doc(`${user.uid}`)
         .set({
+          fullName: fullName,
           firstName: firstName,
           secondName: secondName,
           currentWeight: currentWeight,
@@ -83,7 +86,9 @@ class FB {
 
   /* C(R)UD */
   async getUserField(field) {
+    //sets 'data' to a function which retrieves data in the given field
     const data = await this.db.doc(`users/${this.auth.currentUser.uid}`).get()
+    //giving the field
     return data.get(field)
   }
 

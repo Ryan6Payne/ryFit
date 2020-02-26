@@ -1,18 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
+import FB from '../../config/config'
 
-class Users extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Users</h1>
-        <p>This page will include:</p>
-        <ul>
-          <li>This will display all users for admin only to see</li>
-          <li>Futher CRUD operations for the admin to perform on a user</li>
-        </ul>
-      </div >
-    );
-  }
+function Users(props) {
+
+  return (
+    <div>
+
+    </div>
+  )
 }
 
-export default Users;
+export default Users
