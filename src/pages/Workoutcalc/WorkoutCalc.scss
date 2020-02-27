@@ -1,0 +1,75 @@
+.full-container-workoutCalc {
+  height: 92%;
+  display: flex;
+}
+
+.left-container-workoutCalc {
+  height: 100%;
+  width: 25%;
+  padding: 0;
+  margin-right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.right-container-workoutCalc {
+  height: 100%;
+  width: 75%;
+  padding: 0;
+  margin-right: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.paper-workoutCalc {
+  width: 40%;
+  height: 40%;
+  margin-top: 50px;
+  margin-left: 50px;
+  border: 1px solid black;
+}
+
+.left-content-workoutCalc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 50%;
+}
+
+.generate-workout-button {
+  display: inline-block;
+  padding-top: 10px;
+}
+
+.weight-workoutCalc {
+}
+
+.weighttf-workoutCalc {
+  width: 80px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: #36a1b6;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  margin-top: 200px;
+
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

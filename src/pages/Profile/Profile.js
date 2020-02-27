@@ -19,7 +19,7 @@ export default function Profile(props) {
   const classes = useStyles()
   const initials = FB.getUserInitials();
 
-  const { history } = props;
+  //const { history } = props;
   const [heightFt, setHeightFt] = useState('');
   const [heightIn, setHeightIn] = useState('');
   const [currentWeight, setCurrentWeight] = useState('');

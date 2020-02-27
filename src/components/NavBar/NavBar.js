@@ -15,13 +15,11 @@ const NavBar = ({ history }) => {
                 setSignedIn(true)
                 setIsAuthenticating(false)
                 FB.getUserField("isAdmin").then(setIsAdmin)
-                console.log(isAdmin)
             } else {
                 setIsAuthenticating(false)
             }
         })
-
-    }, [])
+    })
 
     async function logout() {
         await FB.logout()
