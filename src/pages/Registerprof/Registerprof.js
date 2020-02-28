@@ -19,17 +19,17 @@ function RegisterProf(props) {
   const [currentWeight, setCurrentWeight] = useState('');
   const [goalWeight, setGoalWeight] = useState('');
   const [gender, setGender] = useState('');
-  const [dobDay, setDobDay] = useState(null);
-  const [dobMonth, setDobMonth] = useState(null);
-  const [dobYear, setDobYear] = useState(null);
+  const [dobDay, setDobDay] = useState('');
+  const [dobMonth, setDobMonth] = useState('');
+  const [dobYear, setDobYear] = useState('');
   const [fullName, setFullName] = useState('');
-  const firstName = fullName.split(" ")[0];
-  const secondName = fullName.split(" ")[1];
+  const firstName = fullName.split(' ')[0];
+  const secondName = fullName.split(' ')[1];
 
   async function registerUser() {
     try {
-      await FB.updateUser(fullName, firstName, secondName, heightFt, heightIn, currentWeight,
-        goalWeight, gender, dobDay, dobMonth, dobYear);
+      await FB.updateUser(fullName, firstName, secondName, parseInt(heightFt), parseInt(heightIn), parseInt(currentWeight),
+        parseInt(goalWeight), gender, dobDay, dobMonth, dobYear);
       await FB.updateName(fullName);
       history.push('/dashboard')
     } catch (error) {

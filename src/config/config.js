@@ -47,7 +47,7 @@ class FB {
           dobMonth: 0,
           dobYear: 0,
           email: user.email,
-          gender: true,
+          gender: null,
           goalWeight: 0,
           heightFt: 0,
           heightIn: 0,
