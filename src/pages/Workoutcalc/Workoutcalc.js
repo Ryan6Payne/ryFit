@@ -17,15 +17,14 @@ export default function WorkoutCalc(props) {
   //Final values
   const [deadlift, setDeadlift] = useState('');
   const [benchPress, setBenchPress] = useState('');
-  const [overheadPress, setOverheadPress] = useState('');
+  const [shoulderPress, setshoulderPress] = useState('');
   const [squat, setSquat] = useState('');
 
   //Working values
   const [valueDL, setValueDL] = useState(0);
   const [valueBP, setValueBP] = useState(0);
-  const [valueOP, setValueOP] = useState(0);
+  const [valueSP, setValueSP] = useState(0);
   const [valueS, setValueS] = useState(0);
-
 
   useEffect(() => {
     FB.getUserField("currentWeight").then(setCurrentWeight)
@@ -41,9 +40,9 @@ export default function WorkoutCalc(props) {
     setBenchPress(event.target.value);
   };
 
-  const handleInputChangeOP = event => {
-    setValueOP(event.target.value === '' ? '' : Number(event.target.value));
-    setOverheadPress(event.target.value);
+  const handleInputChangeSP = event => {
+    setValueSP(event.target.value === '' ? '' : Number(event.target.value));
+    setshoulderPress(event.target.value);
   };
 
   const handleInputChangeS = event => {
@@ -68,11 +67,11 @@ export default function WorkoutCalc(props) {
     }
   };
 
-  const handleBlurOP = () => {
-    if (valueOP < 0) {
-      setValueOP(0);
-    } else if (valueOP > 200) {
-      setValueOP(200);
+  const handleBlurSP = () => {
+    if (valueSP < 0) {
+      setValueSP(0);
+    } else if (valueSP > 200) {
+      setValueSP(200);
     }
   };
 
@@ -87,7 +86,7 @@ export default function WorkoutCalc(props) {
   function hi() {
     console.log(deadlift)
     console.log(benchPress)
-    console.log(overheadPress)
+    console.log(shoulderPress)
     console.log(squat)
 
   }
@@ -178,14 +177,14 @@ export default function WorkoutCalc(props) {
         </Paper>
         <Paper className="paper-workoutCalc" elevation={20}>
           <div className="lift-title">
-            <h1>Overhead Press</h1>
+            <h1>Shoulder Press</h1>
           </div>
           <div className="lift-content">
             <Input
               className={classes.input}
-              value={valueOP}
-              onChange={handleInputChangeOP}
-              onBlur={handleBlurOP}
+              value={valueSP}
+              onChange={handleInputChangeSP}
+              onBlur={handleBlurSP}
               disableUnderline={false}
               inputProps={{
                 step: 10,
@@ -198,7 +197,7 @@ export default function WorkoutCalc(props) {
             <p>for</p>
             <p>10 Reps</p>
             <Slider
-              value={typeof valueOP === 'number' ? valueOP : 0}
+              value={typeof valueSP === 'number' ? valueSP : 0}
               className={classes.slider}
               disabled
               max={200}
