@@ -84,6 +84,25 @@ class FB {
     }
   }
 
+  addWorkout(deadlift, benchPress, shoulderPress, squat) {
+    var user = this.auth.currentUser;
+
+    try {
+      return this.db.collection("users")
+        .doc(`${user.uid}`)
+        .collection("workouts")
+        .add({
+          deadlift: deadlift,
+          benchPress: benchPress,
+          shoulderPress: shoulderPress,
+          squat: squat,
+          timeStamp: new Date()
+        })
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  }
+
   /* C(R)UD */
   async getUserField(field) {
     //sets 'data' to a function which retrieves data in the given field

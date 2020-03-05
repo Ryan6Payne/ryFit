@@ -15,10 +15,10 @@ export default function WorkoutCalc(props) {
   const [currentWeight, setCurrentWeight] = useState('');
 
   //Final values
-  const [deadlift, setDeadlift] = useState('');
-  const [benchPress, setBenchPress] = useState('');
-  const [shoulderPress, setshoulderPress] = useState('');
-  const [squat, setSquat] = useState('');
+  const [deadlift, setDeadlift] = useState(0);
+  const [benchPress, setBenchPress] = useState(0);
+  const [shoulderPress, setshoulderPress] = useState(0);
+  const [squat, setSquat] = useState(0);
 
   //Working values
   const [valueDL, setValueDL] = useState(0);
@@ -88,8 +88,17 @@ export default function WorkoutCalc(props) {
     console.log(benchPress)
     console.log(shoulderPress)
     console.log(squat)
-
   }
+
+  async function addDBtest() {
+    try {
+      await FB.addWorkout(parseInt(deadlift), parseInt(benchPress), parseInt(shoulderPress), parseInt(squat))
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  //parseInt(deadlift), parseInt(benchPress), parseInt(shoulderPress), parseInt(squat)
 
   return (
     <div className="full-container-workoutCalc">
@@ -108,6 +117,10 @@ export default function WorkoutCalc(props) {
             <p></p>
             <Button variant="contained" onClick={hi} type="submit">
               CONSOLE LOG TEST
+          </Button>
+            <p></p>
+            <Button variant="contained" onClick={addDBtest} type="submit">
+              ADD TO DB TEST
           </Button>
           </div>
         </div>
@@ -168,7 +181,7 @@ export default function WorkoutCalc(props) {
             <Slider
               value={typeof valueBP === 'number' ? valueBP : 0}
               className={classes.slider}
-              // disabled
+              disabled
               max={200}
               marks={marks}
               track={false}
