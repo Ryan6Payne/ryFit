@@ -1,13 +1,11 @@
 import React, { Component } from "react";
+import Loading from '../../components/Loading/Loading'
 
-class Workout extends Component {
-  render() {
-    return (
-      <div class="header">
-        <h1>Workout</h1>
-      </div>
-    );
-  }
+function Workout() {
+  return (
+    <Loading />
+  );
+
 }
 
 export default Workout;
