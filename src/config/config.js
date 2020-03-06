@@ -1,4 +1,6 @@
 import Firebase from 'firebase';
+import moment from 'moment';
+import { hydrate } from 'react-dom';
 
 const firebaseConfiguration = {
   apiKey: 'AIzaSyAVcSaQwD31GIwSBi0LteRefgKfsYFe7yQ',
@@ -86,17 +88,31 @@ class FB {
 
   addWorkout(deadlift, benchPress, shoulderPress, squat) {
     var user = this.auth.currentUser;
+    var timeStamp = new Date() //moment().format('MMMM Do YYYY, h:mm:ss a')
 
     try {
-      return this.db.collection("users")
+      this.db.collection("users")
         .doc(`${user.uid}`)
         .collection("workouts")
-        .add({
+        .doc(`${timeStamp}`)
+        .set({
           deadlift: deadlift,
           benchPress: benchPress,
           shoulderPress: shoulderPress,
           squat: squat,
-          timeStamp: new Date()
+          timeStamp: timeStamp
+        })
+
+      this.db.collection("users")
+        .doc(`${user.uid}`)
+        .collection("workouts")
+        .doc('Latest-Workout')
+        .set({
+          deadlift: deadlift,
+          benchPress: benchPress,
+          shoulderPress: shoulderPress,
+          squat: squat,
+          timeStamp: timeStamp
         })
     } catch (error) {
       console.error("Error updating document: ", error);
@@ -110,6 +126,35 @@ class FB {
     //giving the field
     return data.get(field)
   }
+
+  async getWorkoutField(field) {
+    const data = await this.db.doc(`users/${this.auth.currentUser.uid}/workouts/Latest-Workout`).get()
+
+    return data.get(field)
+  }
+
+
+
+  /*  getLatestWorkout(field) {
+ 
+     var ref = this.db.doc(`users/${this.auth.currentUser.uid}`).collection("workouts")
+ 
+     ref.orderBy("timeStamp", "desc").limit(1).get().then((snapshot) => {
+       snapshot.docs.forEach(async doc => {
+ 
+         const data = await this.db.doc(`users/${this.auth.currentUser.uid}/workouts/${doc.id}`).get()
+         return data.get(field)
+       })
+     })
+   } 
+
+  /* async getWorkoutFields(field) {
+    const hey = this.getLatestWorkout()
+
+    const data = await this.db.doc(`users/${this.auth.currentUser.uid}/workouts/${hey}`).get()
+
+    return data.get(field)
+  } */
 
   getUsername() {
     return this.auth.currentUser && this.auth.currentUser.displayName
