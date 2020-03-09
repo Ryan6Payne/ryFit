@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import { TextField } from '@material-ui/core';
 import { MenuItem, Select, FormControl } from '@material-ui/core';
 import { Button } from '@material-ui/core';
-
+import Loading from '../../components/Loading/Loading';
 
 import './Profile.scss';
 
@@ -29,14 +29,24 @@ export default function Profile(props) {
   const [dobMonth, setDobMonth] = useState(null);
   const [dobYear, setDobYear] = useState(null);
   const [fullName, setFullName] = useState('');
-
   const [firstName, setFirstName] = useState('');
   const [secondName, setSecondName] = useState('');
-
   const firstNameSplit = fullName.split(" ")[0];
   const secondNameSplit = fullName.split(" ")[1];
+  const [pictureUrl, setPictureUrl] = useState(null);
 
-  useEffect(() => {
+  //Progress
+  const [deadlift, setDeadlift] = useState(0);
+  const [benchPress, setBenchPress] = useState(0);
+  const [shoulderPress, setShoulderPress] = useState(0);
+  const [squat, setSquat] = useState(0);
+
+  const [isLoading, setisLoading] = useState(true)
+
+  const delay = 800;
+
+  //Get data from the Database then set the relevant local variables
+  function getData() {
     FB.getUserField("fullName").then(setFullName)
     FB.getUserField("firstName").then(setFirstName)
     FB.getUserField("secondName").then(setSecondName)
@@ -48,6 +58,40 @@ export default function Profile(props) {
     FB.getUserField("goalWeight").then(setGoalWeight)
     FB.getUserField("heightFt").then(setHeightFt)
     FB.getUserField("heightIn").then(setHeightIn)
+    FB.isLoggedIn().then(user => {
+      FB.db.collection("users")
+        .doc(user.uid)
+        .onSnapshot(documents => {
+          setPictureUrl(documents.data()["pictureUrl"])
+        })
+      /* FB.db.collection("users")
+        .doc(user.uid)
+        .collection("workouts")
+        .doc("Latest-Workout")
+        .onSnapshot(documents => {
+          setDeadlift(documents.data()["deadlift"])
+        }) */
+    })
+  }
+
+  /* Gets latest workout */
+  function getLatestWorkout() {
+    const ref = FB.db.doc(`users/${FB.auth.currentUser.uid}`).collection("workouts")
+
+    ref.orderBy("timeStamp", "desc").limit(1).get().then((snapshot) => {
+      snapshot.docs.forEach(async doc => {
+        const data = await FB.db.doc(`users/${FB.auth.currentUser.uid}/workouts/${doc.id}`).get()
+        setDeadlift(data.get("deadlift"))
+        setBenchPress(data.get("benchPress"))
+        setShoulderPress(data.get("shoulderPress"))
+        setSquat(data.get("squat"))
+      })
+    })
+  }
+
+  useEffect(() => {
+    getData();
+    getLatestWorkout()
   }, [])
 
   async function updateProfile() {
@@ -61,6 +105,23 @@ export default function Profile(props) {
     }
   }
 
+  const pictureUpload = async event => {
+    //Get the uploaded picture from local
+    const picture = event.target.files[0]
+    //Refer to config to upload the picture
+    const pictureUploadResponse = await FB.pictureUpload(picture)
+    //Was the upload successful
+    pictureUploadResponse ? alert("uploaded successfully") : alert("error")
+  }
+
+  setTimeout(function () {
+    setisLoading(false)
+  }, delay)
+
+  if (isLoading) {
+    return <Loading />
+  }
+
   return (
     <div className="full-container-profile">
       <div className="header-container-profile">
@@ -70,6 +131,7 @@ export default function Profile(props) {
             className={classes.input}
             id="profile-pic"
             type="file"
+            onChange={pictureUpload}
           />
           <Badge
             overlap="circle"
@@ -89,7 +151,10 @@ export default function Profile(props) {
               </label>
             }
           >
-            <Avatar alt="my-profile-pic" className={classes.avatar}>
+            <Avatar alt="my-profile-pic"
+              alt="profile-pic"
+              src={pictureUrl}
+              className={classes.avatar}>
               {initials}
             </Avatar>
           </Badge>
@@ -254,18 +319,20 @@ export default function Profile(props) {
                 Update
               </Button>
             </div>
-
           </Paper>
 
           <Paper elevation={20} className="progress-profile">
             <Typography className="profile-h4-typo" variant="h5">
               Your progress
             </Typography>
+            <p>{deadlift}</p>
+            <p>{benchPress}</p>
+            <p>{shoulderPress}</p>
+            <p>{squat}</p>
           </Paper>
         </div>
       </form>
     </div>
-
   );
 }
 
@@ -276,7 +343,7 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(20),
     height: theme.spacing(20),
     fontSize: 40,
-
+    border: '2px solid black'
   },
 
   input: {

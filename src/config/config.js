@@ -18,6 +18,13 @@ class FB {
     Firebase.initializeApp(firebaseConfiguration);
     this.auth = Firebase.auth();
     this.db = Firebase.firestore();
+    this.storage = Firebase.storage();
+  }
+
+  async isLoggedIn() {
+    return new Promise(resolve => {
+      this.auth.onAuthStateChanged(resolve)
+    })
   }
 
   async login(email, password) {
@@ -53,7 +60,8 @@ class FB {
           goalWeight: 0,
           heightFt: 0,
           heightIn: 0,
-          isAdmin: false
+          isAdmin: false,
+          pictureUrl: null
         });
     }
     catch (error) {
@@ -84,6 +92,35 @@ class FB {
     } catch (error) {
       console.error("Error updating document: ", error);
     }
+  }
+
+  /* Image handling (Firebase Storage) */
+  async pictureUpload(image) {
+    try {
+      const pictureUrl = await this.getPicture()
+
+      await this.storage
+        .ref(`images/${this.auth.currentUser.uid}/profilepic.jpg`)
+        .put(image)
+
+      this.db.doc(`users/${this.auth.currentUser.uid}`)
+        .update({
+          pictureUrl: pictureUrl
+        })
+      return true
+    } catch {
+      return false
+    }
+  }
+
+  async getPicture() {
+    const ref = this.storage.ref(`images/${this.auth.currentUser.uid}`)
+
+    return ref.child("profilepic.jpg")
+      .getDownloadURL()
+      .then(pictureUrl => {
+        return pictureUrl
+      })
   }
 
   addWorkout(deadlift, benchPress, shoulderPress, squat) {
