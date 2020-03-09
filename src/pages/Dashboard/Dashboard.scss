@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  font-family: 'Lato', sans-serif;
 }
 
 .right-container-dashboard {
@@ -25,4 +26,10 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.heading-dashboard {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

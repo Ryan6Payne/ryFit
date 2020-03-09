@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './Dashboard.scss';
 import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import FB from '../../config/config';
+
 
 export default function Dashboard() {
   const classes = useStyles();
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState(null);
+
+  function getData() {
+    FB.getUserField("fullName").then(setName)
+    FB.getUserField("gender").then(setGender)
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className="full-container-dashboard">
       <div className="left-container-dashboard">
         <Paper elevation={20} className={classes.paperL}>
-
+          <div className="heading-dashboard">
+            <h1>{name}</h1>
+          </div>
+          {/* {gender ? (
+            <p>Hello Male</p>
+          ) : (
+              <p>Hello female</p>
+            )} */}
         </Paper>
       </div>
 
