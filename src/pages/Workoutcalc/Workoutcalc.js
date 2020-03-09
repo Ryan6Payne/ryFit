@@ -13,6 +13,7 @@ export default function WorkoutCalc(props) {
 
   const classes = useStyles();
   const [currentWeight, setCurrentWeight] = useState('');
+  const { history } = props;
 
   //Final values
   const [deadlift, setDeadlift] = useState(0);
@@ -83,22 +84,24 @@ export default function WorkoutCalc(props) {
     }
   };
 
-  function hi() {
-    console.log(deadlift)
-    console.log(benchPress)
-    console.log(shoulderPress)
-    console.log(squat)
-  }
-
-  async function addDBtest() {
+  async function addWorkoutToDB() {
     try {
-      await FB.addWorkout(parseInt(deadlift), parseInt(benchPress), parseInt(shoulderPress), parseInt(squat))
+      if (deadlift === 0) {
+        alert("Ensure you have entered a deadlift value")
+      } else if (benchPress === 0) {
+        alert("Ensure you have entered a bench press value")
+      } else if (shoulderPress === 0) {
+        alert("Ensure you have entered a shoulder press value")
+      } else if (squat === 0) {
+        alert("Ensure you have entered a squat value")
+      } else {
+        await FB.addWorkout(parseInt(deadlift), parseInt(benchPress), parseInt(shoulderPress), parseInt(squat))
+        history.push('./Workout');
+      }
     } catch (error) {
       alert(error.message);
     }
   }
-
-  //parseInt(deadlift), parseInt(benchPress), parseInt(shoulderPress), parseInt(squat)
 
   return (
     <div className="full-container-workoutCalc">
@@ -111,16 +114,8 @@ export default function WorkoutCalc(props) {
             </div>
           </div>
           <div className="generate-workout-button">
-            <Button variant="outlined" color="primary" type="submit">
+            <Button variant="outlined" color="primary" onClick={addWorkoutToDB} type="submit">
               Generate Workout
-          </Button>
-            <p></p>
-            <Button variant="contained" onClick={hi} type="submit">
-              CONSOLE LOG TEST
-          </Button>
-            <p></p>
-            <Button variant="contained" onClick={addDBtest} type="submit">
-              ADD TO DB TEST
           </Button>
           </div>
         </div>
