@@ -97,11 +97,11 @@ class FB {
   /* Image handling (Firebase Storage) */
   async pictureUpload(image) {
     try {
-      const pictureUrl = await this.getPicture()
-
       await this.storage
         .ref(`images/${this.auth.currentUser.uid}/profilepic.jpg`)
         .put(image)
+
+      const pictureUrl = await this.getPicture()
 
       this.db.doc(`users/${this.auth.currentUser.uid}`)
         .update({
@@ -116,7 +116,8 @@ class FB {
   async getPicture() {
     const ref = this.storage.ref(`images/${this.auth.currentUser.uid}`)
 
-    return ref.child("profilepic.jpg")
+    return ref
+      .child("profilepic.jpg")
       .getDownloadURL()
       .then(pictureUrl => {
         return pictureUrl

@@ -44,6 +44,8 @@ export default function Workout() {
     FB.getWorkoutField("squat").then(setSquat)
   }
 
+  //add getLatestWorkout() here, same as profile.
+
   setTimeout(function () {
     setisLoading(false)
   }, delay)
