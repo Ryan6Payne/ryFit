@@ -59,31 +59,47 @@ export default function Workout() {
   }
 
   const rowsWeek1 = [
-    createData('Deadlift', deadlift + 'x10', (deadlift * 1.20) + 'x5', (deadlift * 1.25) + 'x3', (deadlift * 1.30) + 'x1'),
-    createData('Bench Press', benchPress + 'x10', (benchPress * 1.20) + 'x5', (benchPress * 1.25) + 'x3', (benchPress * 1.30 + 'x1')),
-    createData('Shoulder Press', shoulderPress + 'x10', (shoulderPress * 1.20) + 'x5', (shoulderPress * 1.25) + 'x3', (shoulderPress * 1.30 + 'x1')),
-    createData('Squat', squat + 'x10', (squat * 1.20) + 'x5', (squat * 1.25) + 'x3', (squat * 1.30 + 'x1'))
+    createData('Deadlift', deadlift + 'x10', Math.round(deadlift * 1.20) + 'x5', Math.round(deadlift * 1.25) + 'x3', Math.round(deadlift * 1.30) + 'x1'),
+    createData('Bench Press', benchPress + 'x10', Math.round(benchPress * 1.20) + 'x5', Math.round(benchPress * 1.25) + 'x3', Math.round(benchPress * 1.30) + 'x1'),
+    createData('Shoulder Press', shoulderPress + 'x10', Math.round(shoulderPress * 1.20) + 'x5', Math.round(shoulderPress * 1.25) + 'x3', Math.round(shoulderPress * 1.30) + 'x1'),
+    createData('Squat', squat + 'x10', Math.round(squat * 1.20) + 'x5', Math.round(squat * 1.25) + 'x3', Math.round(squat * 1.30) + 'x1')
   ]
+
+
+  const w2Deadlift = (deadlift + 1);
+  const w2BenchPress = (benchPress + 1);
+  const w2ShoulderPress = (shoulderPress + 1);
+  const w2Squat = (squat + 1);
 
   const rowsWeek2 = [
-    createData('Deadlift', (deadlift + 1) + 'x10', (deadlift * 1.20 + 1) + 'x5', (deadlift * 1.25 + 1) + 'x3', (deadlift * 1.30 + 1) + 'x1'),
-    createData('Bench Press', (benchPress + 1) + 'x10', (benchPress * 1.20 + 1) + 'x5', (benchPress * 1.25 + 1) + 'x3', (benchPress * 1.30 + 1) + 'x1'),
-    createData('Shoulder Press', (shoulderPress + 1) + 'x10', (shoulderPress * 1.20 + 1) + 'x5', (shoulderPress * 1.25 + 1) + 'x3', (shoulderPress * 1.30 + 1) + 'x1'),
-    createData('Squat', (squat + 1) + 'x10', (squat * 1.20 + 1) + 'x5', (squat * 1.25 + 1) + 'x3', (squat * 1.30 + 1) + 'x1')
+    createData('Deadlift', (w2Deadlift) + 'x10', Math.round(w2Deadlift * 1.20) + 'x5', Math.round(w2Deadlift * 1.25) + 'x3', Math.round(w2Deadlift * 1.30) + 'x1'),
+    createData('Bench Press', (w2BenchPress) + 'x10', Math.round(w2BenchPress * 1.20) + 'x5', Math.round(w2BenchPress * 1.25) + 'x3', Math.round(w2BenchPress * 1.30) + 'x1'),
+    createData('Shoulder Press', (w2ShoulderPress) + 'x10', Math.round(w2ShoulderPress * 1.20) + 'x5', Math.round(w2ShoulderPress * 1.25) + 'x3', Math.round(w2ShoulderPress * 1.30) + 'x1'),
+    createData('Squat', (w2Squat) + 'x10', Math.round(w2Squat * 1.20) + 'x5', Math.round(w2Squat * 1.25) + 'x3', Math.round(w2Squat * 1.30) + 'x1')
   ]
+
+  const w3Deadlift = (deadlift + 2);
+  const w3BenchPress = (benchPress + 2);
+  const w3ShoulderPress = (shoulderPress + 2);
+  const w3Squat = (squat + 2);
 
   const rowsWeek3 = [
-    createData('Deadlift', (deadlift + 2) + 'x10', (deadlift * 1.20 + 2) + 'x5', (deadlift * 1.25 + 2) + 'x3', (deadlift * 1.30 + 2) + 'x1'),
-    createData('Bench Press', (benchPress + 2) + 'x10', (benchPress * 1.20 + 2) + 'x5', (benchPress * 1.25 + 2) + 'x3', (benchPress * 1.30 + 2) + 'x1'),
-    createData('Shoulder Press', (shoulderPress + 2) + 'x10', (shoulderPress * 1.20 + 2) + 'x5', (shoulderPress * 1.25 + 2) + 'x3', (shoulderPress * 1.30 + 2) + 'x1'),
-    createData('Squat', (squat + 2) + 'x10', (squat * 1.20 + 2) + 'x5', (squat * 1.25 + 2) + 'x3', (squat * 1.30 + 2) + 'x1')
+    createData('Deadlift', (w3Deadlift) + 'x10', Math.round(w3Deadlift * 1.20) + 'x5', Math.round(w3Deadlift * 1.25) + 'x3', Math.round(w3Deadlift * 1.30) + 'x1'),
+    createData('Bench Press', (w3BenchPress) + 'x10', Math.round(w3BenchPress * 1.20 + 2) + 'x5', Math.round(w3BenchPress * 1.25 + 2) + 'x3', Math.round(w3BenchPress * 1.30) + 'x1'),
+    createData('Shoulder Press', (w3ShoulderPress) + 'x10', Math.round(w3ShoulderPress * 1.20) + 'x5', Math.round(w3ShoulderPress * 1.25) + 'x3', Math.round(w3ShoulderPress * 1.30) + 'x1'),
+    createData('Squat', (w3Squat) + 'x10', Math.round(w3Squat * 1.20) + 'x5', Math.round(w3Squat * 1.25) + 'x3', Math.round(w3Squat * 1.30) + 'x1')
   ]
 
+  const w4Deadlift = (deadlift + 3);
+  const w4BenchPress = (benchPress + 3);
+  const w4ShoulderPress = (shoulderPress + 3);
+  const w4Squat = (squat + 3);
+
   const rowsWeek4 = [
-    createData('Deadlift', (deadlift + 3) + 'x10', (deadlift * 1.20 + 3) + 'x5', (deadlift * 1.25 + 3) + 'x3', (deadlift * 1.30 + 3) + 'x1'),
-    createData('Bench Press', (benchPress + 3) + 'x10', (benchPress * 1.20 + 3) + 'x5', (benchPress * 1.25 + 3) + 'x3', (benchPress * 1.30 + 3) + 'x1'),
-    createData('Shoulder Press', (shoulderPress + 3) + 'x10', (shoulderPress * 1.20 + 3) + 'x5', (shoulderPress * 1.25 + 3) + 'x3', (shoulderPress * 1.30 + 3) + 'x1'),
-    createData('Squat', (squat + 3) + 'x10', (squat * 1.20 + 3) + 'x5', (squat * 1.25 + 3) + 'x3', (squat * 1.30 + 3) + 'x1')
+    createData('Deadlift', (w4Deadlift) + 'x10', Math.round(w4Deadlift * 1.20) + 'x5', Math.round(w4Deadlift * 1.25) + 'x3', Math.round(w4Deadlift * 1.30) + 'x1'),
+    createData('Bench Press', (w4BenchPress) + 'x10', Math.round(w4BenchPress * 1.20) + 'x5', Math.round(w4BenchPress * 1.25) + 'x3', Math.round(w4BenchPress * 1.30) + 'x1'),
+    createData('Shoulder Press', (w4ShoulderPress) + 'x10', Math.round(w4ShoulderPress * 1.20) + 'x5', Math.round(w4ShoulderPress * 1.25) + 'x3', Math.round(w4ShoulderPress * 1.30) + 'x1'),
+    createData('Squat', (w4Squat) + 'x10', Math.round(w4Squat * 1.20) + 'x5', Math.round(w4Squat * 1.25) + 'x3', Math.round(w4Squat * 1.30) + 'x1')
   ]
 
 

@@ -107,7 +107,7 @@ export default function Dashboard() {
 
         </Paper>
       </div>
-    </div>
+    </div >
 
   )
 }
@@ -130,7 +130,8 @@ const useStyles = makeStyles(theme => ({
     height: theme.spacing(16),
     fontSize: 30,
     border: '2px solid black'
-  }
+  },
+
 }))
 
 
