@@ -35,11 +35,22 @@ export default function Dashboard() {
   }
 
   async function getAge() {
-    await FB.getUserField("dobYear").then(field => {
-      const date = new Date();
-      const year = date.getFullYear();
-      const byear = field;
-      setAge(year - byear)
+    await FB.getUserField("dobYear").then(async field => {
+      const month = await FB.getUserField("dobMonth")
+
+      const today = new Date();
+
+      const todayMonth = today.getMonth();
+
+      const year = today.getFullYear();
+
+      const birthYear = field;
+
+      if (todayMonth < month) {
+        setAge((year - birthYear) - 1)
+      } else {
+        setAge(year - birthYear)
+      }
     })
   }
 
