@@ -33,38 +33,80 @@ export default function Dashboard() {
 
   return (
     <div className="full-container-dashboard">
-      <div className="left-container-dashboard">
-        <Paper elevation={20} className={classes.paperL}>
-          <div className="dashboard-profile-pic">
-            <Avatar alt="my-profile-pic"
-              alt="profile-pic"
-              src={pictureUrl}
-              className={classes.avatar}>
-              {initials}
-            </Avatar>
+      <div className="top-container-dashboard">
+        <Paper elevation={20} className={classes.paperT}>
+          <div className="top-info-container-dashboard">
+            <div className="dashboard-profile-pic">
+              <Avatar alt="my-profile-pic"
+                alt="profile-pic"
+                src={pictureUrl}
+                className={classes.avatar}>
+                {initials}
+              </Avatar>
+            </div>
+            <div className="heading-dashboard">
+              <h1>{name}</h1>
+              <p>United Kingdom</p>
+            </div>
           </div>
-          <div className="heading-dashboard">
-            <h1>{name}</h1>
+          <div className="top-content-container-dashboard">
+            <div>
+              <h3>AGE</h3>
+              <div className="dashboard-circles">
+                21
+              </div>
+            </div>
+            <div>
+              <h3>BMI</h3>
+              <div className="dashboard-circles">
+                21
+              </div>
+            </div>
+            <div>
+              <h3>BMR</h3>
+              <div className="dashboard-circles">
+                21
+              </div>
+            </div>
           </div>
         </Paper>
       </div>
+      <div className="bottom-container-dashboard">
+        <Paper elevation={20} className={classes.paperB}>
 
-      <div className="right-container-dashboard">
-        <Paper elevation={0} className={classes.paperR}>
-          <Paper elevation={20} className={classes.paperRT}>
+        </Paper>
+        <Paper elevation={20} className={classes.paperB}>
 
-          </Paper>
-          <Paper elevation={20} className={classes.paperRB}>
-
-          </Paper>
         </Paper>
       </div>
-    </div >
+    </div>
 
   )
 }
 
+
 const useStyles = makeStyles(theme => ({
+  paperB: {
+    width: '45%',
+    border: '1px solid black',
+    height: '90%',
+    marginBottom: 20,
+  },
+  paperT: {
+    width: '45%',
+    border: '1px solid black',
+    height: '90%'
+  },
+  avatar: {
+    width: theme.spacing(16),
+    height: theme.spacing(16),
+    fontSize: 30,
+    border: '2px solid black'
+  }
+}))
+
+
+{/*const useStyles = makeStyles(theme => ({
   paperL: {
     width: '95%',
     height: '95%',
@@ -94,3 +136,33 @@ const useStyles = makeStyles(theme => ({
     border: '2px solid black'
   }
 }))
+
+
+ <div className="full-container-dashboard">
+      <div className="left-container-dashboard">
+        <Paper elevation={20} className={classes.paperL}>
+          <div className="dashboard-profile-pic">
+            <Avatar alt="my-profile-pic"
+              alt="profile-pic"
+              src={pictureUrl}
+              className={classes.avatar}>
+              {initials}
+            </Avatar>
+          </div>
+          <div className="heading-dashboard">
+            <h1>{name}</h1>
+          </div>
+        </Paper>
+      </div>
+
+      <div className="right-container-dashboard">
+        <Paper elevation={0} className={classes.paperR}>
+          <Paper elevation={20} className={classes.paperRT}>
+
+          </Paper>
+          <Paper elevation={20} className={classes.paperRB}>
+
+          </Paper>
+        </Paper>
+      </div>
+    </div > */}
