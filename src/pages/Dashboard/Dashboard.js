@@ -11,6 +11,12 @@ export default function Dashboard() {
   const [name, setName] = useState('');
   const [gender, setGender] = useState(null);
   const [pictureUrl, setPictureUrl] = useState(null);
+  const [location, setLocation] = useState('');
+  const [dobYear, setDobYear] = useState('');
+
+  const [age, setAge] = useState('');
+  const [BMI, setBMI] = useState(null);
+  const [BMR, setBMR] = useState(null);
 
   const initials = FB.getUserInitials();
 
@@ -18,6 +24,7 @@ export default function Dashboard() {
   function getData() {
     FB.getUserField("fullName").then(setName)
     FB.getUserField("gender").then(setGender)
+    FB.getUserField("location").then(setLocation)
     FB.isLoggedIn().then(user => {
       FB.db.collection("users")
         .doc(user.uid)
@@ -27,8 +34,29 @@ export default function Dashboard() {
     })
   }
 
+  async function getAge() {
+    await FB.getUserField("dobYear").then(field => {
+      const date = new Date();
+      const year = date.getFullYear();
+      const byear = field;
+      setAge(year - byear)
+    })
+  }
+
+  function getStats() {
+    if (BMI === null) {
+      setBMI("N/A")
+    }
+
+    if (BMR === null) {
+      setBMR("N/A")
+    }
+  }
+
   useEffect(() => {
     getData();
+    getAge();
+    getStats();
   }, []);
 
   return (
@@ -46,26 +74,26 @@ export default function Dashboard() {
             </div>
             <div className="heading-dashboard">
               <h1>{name}</h1>
-              <p>United Kingdom</p>
+              <p>{location}</p>
             </div>
           </div>
           <div className="top-content-container-dashboard">
             <div>
               <h3>AGE</h3>
               <div className="dashboard-circles">
-                21
+                {age}
               </div>
             </div>
             <div>
               <h3>BMI</h3>
               <div className="dashboard-circles">
-                21
+                {BMI}
               </div>
             </div>
             <div>
               <h3>BMR</h3>
               <div className="dashboard-circles">
-                21
+                {BMR}
               </div>
             </div>
           </div>

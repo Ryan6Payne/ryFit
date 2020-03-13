@@ -61,7 +61,8 @@ class FB {
           heightFt: 0,
           heightIn: 0,
           isAdmin: false,
-          pictureUrl: null
+          pictureUrl: null,
+          location: null
         });
     }
     catch (error) {
@@ -70,7 +71,7 @@ class FB {
   }
 
   /* CR(U)D part of the registration process. This function will also be called on the profile page where the user can update their details */
-  updateUser(fullName, firstName, secondName, heightFt, heightIn, currentWeight, goalWeight, gender, dobDay, dobMonth, dobYear) {
+  updateUser(fullName, firstName, secondName, heightFt, heightIn, currentWeight, goalWeight, gender, dobDay, dobMonth, dobYear, location) {
     var user = this.auth.currentUser;
     try {
       return this.db.collection("users")
@@ -87,7 +88,8 @@ class FB {
           email: user.email,
           goalWeight: goalWeight,
           heightFt: heightFt,
-          heightIn: heightIn
+          heightIn: heightIn,
+          location: location
         })
     } catch (error) {
       console.error("Error updating document: ", error);
