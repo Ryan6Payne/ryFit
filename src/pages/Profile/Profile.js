@@ -173,10 +173,10 @@ export default function Profile(props) {
 
   return (
     <div className="full-container-profile">
-      <form onSubmit={e => e.preventDefault() && false}>
+      <form className="profile-form" onSubmit={e => e.preventDefault() && false}>
         <div className="content-container-profile">
           <Paper elevation={20} className="update-details-profile">
-            <Typography className="profile-h4-typo" variant="h5">
+            <Typography className="profile-h4-typo" variant="h4">
               Update your details
             </Typography>
             <div className="header-container-profile">
@@ -217,7 +217,7 @@ export default function Profile(props) {
             </div>
             <div className="profile-inputs">
               <div className="profile-input-name">
-                <p> Name </p>
+                <p> Name: </p>
                 <TextField className="inputtf-name" id="outlined-basic" value={fullName} label="Full Name" variant="outlined" onChange={e => setFullName(e.target.value)} />
               </div>
               <div className="profile-input">
@@ -632,7 +632,7 @@ export default function Profile(props) {
           </Paper>
 
           <Paper elevation={20} className="progress-profile">
-            <Typography className="profile-h4-typo" variant="h5">
+            <Typography className="profile-h4-typo" variant="h4">
               Your progress
             </Typography>
 

@@ -15,7 +15,11 @@
 .content-container-profile {
   display: flex;
   justify-content: space-evenly;
-  padding-top: 25px;
+  height: 100%;
+  padding-top: 15px;
+}
+
+.profile-form {
 }
 
 .update-details-profile {
@@ -32,6 +36,8 @@
 .profile-h4-typo {
   text-align: center;
   padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: 'Lato', sans-serif;
 }
 
 .profile-input-name {
@@ -49,6 +55,10 @@
 .profile-inputs {
   padding-left: 10px;
   padding-top: 10px;
+}
+
+.update-details-profile p {
+  font-weight: 500;
 }
 
 .profile-input-selector {
@@ -74,6 +84,7 @@
 }
 
 .progress-profile-container {
+  margin: 0;
 }
 
 .progress-profile-progress {
@@ -89,6 +100,10 @@
   border: 1px solid black;
   margin: 5px 5px 5px 5px;
   border-radius: 15px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
 }
 
 .profile-workout-container h4 {
