@@ -38,13 +38,22 @@ export default function Workout() {
   const [week, setWeek] = useState(1)
 
   function getData() {
-    FB.getWorkoutField("deadlift").then(setDeadlift)
-    FB.getWorkoutField("benchPress").then(setBenchPress)
-    FB.getWorkoutField("shoulderPress").then(setShoulderPress)
-    FB.getWorkoutField("squat").then(setSquat)
+
   }
 
-  //add getLatestWorkout() here, same as profile.
+  function getLatestWorkout() {
+    const ref = FB.db.doc(`users/${FB.auth.currentUser.uid}`).collection("workouts")
+
+    ref.orderBy("timeStamp", "desc").limit(1).get().then((snapshot) => {
+      snapshot.docs.forEach(async doc => {
+        const data = await FB.db.doc(`users/${FB.auth.currentUser.uid}/workouts/${doc.id}`).get()
+        setDeadlift(data.get("deadlift"))
+        setBenchPress(data.get("benchPress"))
+        setShoulderPress(data.get("shoulderPress"))
+        setSquat(data.get("squat"))
+      })
+    })
+  }
 
   setTimeout(function () {
     setisLoading(false)
@@ -52,6 +61,7 @@ export default function Workout() {
 
   useEffect(() => {
     getData();
+    getLatestWorkout();
   }, [])
 
   function createData(workout, set1, set2, set3, set4) {

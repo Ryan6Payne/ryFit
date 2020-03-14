@@ -7,7 +7,7 @@
 }
 
 .profile-picture {
-  width: 15%;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
 }
@@ -15,6 +15,7 @@
 .content-container-profile {
   display: flex;
   justify-content: space-evenly;
+  padding-top: 25px;
 }
 
 .update-details-profile {
@@ -26,7 +27,6 @@
 .progress-profile {
   border: 1px black solid;
   width: 30%;
-  padding-bottom: 50px;
 }
 
 .profile-h4-typo {
@@ -71,4 +71,29 @@
 
 .profile-update-button {
   width: 120px;
+}
+
+.progress-profile-container {
+}
+
+.progress-profile-progress {
+  display: flex;
+}
+
+.section-profile-progress {
+  width: 25%;
+  text-align: center;
+}
+
+.profile-workout-container {
+  border: 1px solid black;
+  margin: 5px 5px 5px 5px;
+  border-radius: 15px;
+}
+
+.profile-workout-container h4 {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 10px;
+  text-align: center;
 }

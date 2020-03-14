@@ -11,6 +11,7 @@ import { TextField } from '@material-ui/core';
 import { MenuItem, Select, FormControl } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import Loading from '../../components/Loading/Loading';
+import moment from 'moment';
 
 import './Profile.scss';
 
@@ -20,7 +21,6 @@ export default function Profile(props) {
   const initials = FB.getUserInitials();
   const { history } = props;
 
-  //const { history } = props;
   const [heightFt, setHeightFt] = useState('');
   const [heightIn, setHeightIn] = useState('');
   const [currentWeight, setCurrentWeight] = useState('');
@@ -36,6 +36,8 @@ export default function Profile(props) {
   const firstNameSplit = fullName.split(" ")[0];
   const secondNameSplit = fullName.split(" ")[1];
   const [pictureUrl, setPictureUrl] = useState(null);
+
+  const [workouts, setWorkouts] = useState([]);
 
   //Progress
   const [deadlift, setDeadlift] = useState(0);
@@ -92,9 +94,52 @@ export default function Profile(props) {
     })
   }
 
+
+  /* workouts */
+  /* function getWorkouts() {
+    const ref = FB.db.doc(`users/${FB.auth.currentUser.uid}`).collection("workouts")
+
+    ref.orderBy("timeStamp", "desc").limit(5)
+      .get()
+      .then(snapshot => {
+
+
+        snapshot.forEach(doc => {
+          const week = []
+
+
+          week.push(doc.data())
+
+          setWorkouts(oldArray => [...oldArray, week])
+        })
+        console.log(workouts)
+      }).catch(error => console.log(error))
+  } */
+
+  function getWorkouts() {
+    const ref = FB.db.doc(`users/${FB.auth.currentUser.uid}`).collection("workouts")
+
+    ref.orderBy("timeStamp", "desc").limit(5)
+      .get()
+      .then(snapshot => {
+        const workoutsArr = []
+        snapshot.forEach(doc => {
+          const data = doc.data()
+          workoutsArr.push(data)
+        })
+        setWorkouts(workoutsArr)
+
+      }).catch(error => console.log(error))
+  }
+
+  function testButton() {
+    console.log(workouts)
+  }
+
   useEffect(() => {
     getData();
-    getLatestWorkout()
+    getLatestWorkout();
+    getWorkouts();
   }, [])
 
   async function updateProfile() {
@@ -128,48 +173,48 @@ export default function Profile(props) {
 
   return (
     <div className="full-container-profile">
-      <div className="header-container-profile">
-        <Paper elevation={0} className="profile-picture">
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="profile-pic"
-            type="file"
-            onChange={pictureUpload}
-          />
-          <Badge
-            overlap="circle"
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right"
-            }}
-            badgeContent={
-              <label htmlFor="profile-pic">
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <ImageIcon className={classes.icon} color="action" fontSize="large" />
-                </IconButton>
-              </label>
-            }
-          >
-            <Avatar alt="my-profile-pic"
-              alt="profile-pic"
-              src={pictureUrl}
-              className={classes.avatar}>
-              {initials}
-            </Avatar>
-          </Badge>
-        </Paper>
-      </div>
       <form onSubmit={e => e.preventDefault() && false}>
         <div className="content-container-profile">
           <Paper elevation={20} className="update-details-profile">
             <Typography className="profile-h4-typo" variant="h5">
               Update your details
             </Typography>
+            <div className="header-container-profile">
+              <Paper elevation={0} className="profile-picture">
+                <input
+                  accept="image/*"
+                  className={classes.input}
+                  id="profile-pic"
+                  type="file"
+                  onChange={pictureUpload}
+                />
+                <Badge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right"
+                  }}
+                  badgeContent={
+                    <label htmlFor="profile-pic">
+                      <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="span"
+                      >
+                        <ImageIcon className={classes.icon} color="action" fontSize="large" />
+                      </IconButton>
+                    </label>
+                  }
+                >
+                  <Avatar alt="my-profile-pic"
+                    alt="profile-pic"
+                    src={pictureUrl}
+                    className={classes.avatar}>
+                    {initials}
+                  </Avatar>
+                </Badge>
+              </Paper>
+            </div>
             <div className="profile-inputs">
               <div className="profile-input-name">
                 <p> Name </p>
@@ -590,14 +635,43 @@ export default function Profile(props) {
             <Typography className="profile-h4-typo" variant="h5">
               Your progress
             </Typography>
-            <p>{deadlift}</p>
-            <p>{benchPress}</p>
-            <p>{shoulderPress}</p>
-            <p>{squat}</p>
+
+            <div className="progress-profile-container">
+              {
+                workouts &&
+                workouts.map(workout => {
+                  let stamp = workout.timeStamp.toDate().toString()
+                  stamp = moment(stamp).format('MMMM Do YYYY, h:mm:ss a')
+                  return (
+                    <div className="profile-workout-container">
+                      <h4>{stamp}</h4>
+                      <div className="progress-profile-progress">
+                        <div className="section-profile-progress">
+                          <h6>Deadlift</h6>
+                          <p>{workout.deadlift}</p>
+                        </div>
+                        <div className="section-profile-progress">
+                          <h6>Deadlift</h6>
+                          <p>{workout.benchPress}</p>
+                        </div>
+                        <div className="section-profile-progress">
+                          <h6>Deadlift</h6>
+                          <p>{workout.shoulderPress}</p>
+                        </div>
+                        <div className="section-profile-progress">
+                          <h6>Deadlift</h6>
+                          <p>{workout.squat}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </div>
           </Paper>
         </div>
       </form>
-    </div>
+    </div >
   );
 }
 
