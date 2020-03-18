@@ -149,7 +149,7 @@ export default function Dashboard() {
                 value={heightBMR}
                 onChange={handleChangeHeightBMR}
               />
-              <p></p>
+
             </div>
             <div className="calc-weight-slider">
               <p>Weight:</p>
