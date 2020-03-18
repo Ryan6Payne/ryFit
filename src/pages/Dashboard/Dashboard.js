@@ -4,6 +4,8 @@ import { Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Avatar } from '@material-ui/core';
 import FB from '../../config/config';
+import { Slider } from '@material-ui/core';
+import { Button } from '@material-ui/core'
 
 
 export default function Dashboard() {
@@ -14,9 +16,14 @@ export default function Dashboard() {
   const [location, setLocation] = useState('');
   const [dobYear, setDobYear] = useState('');
 
+
   const [age, setAge] = useState('');
+
   const [BMI, setBMI] = useState(null);
+
   const [BMR, setBMR] = useState(null);
+  const [heightBMR, setHeightBMR] = useState(142)
+  const [weightBMR, setWeightBMR] = useState(66)
 
   const initials = FB.getUserInitials();
 
@@ -54,21 +61,28 @@ export default function Dashboard() {
     })
   }
 
-  function getStats() {
-    if (BMI === null) {
-      setBMI("N/A")
-    }
-
-    if (BMR === null) {
-      setBMR("N/A")
-    }
-  }
-
   useEffect(() => {
     getData();
     getAge();
-    getStats();
   }, []);
+
+  function generate() {
+    if (gender == true) {
+      console.log("male")
+      setBMR(Math.round(66.5 + (13.75 * weightBMR) + (5.003 * heightBMR) - (6.755 * age)))
+      const heightInMeters = heightBMR / 100
+      const floatBMI = parseFloat(weightBMR / (heightInMeters * heightInMeters)).toFixed(2)
+      setBMI(floatBMI)
+    }
+  }
+
+  const handleChangeHeightBMR = (event, newValue) => {
+    setHeightBMR(newValue);
+  };
+
+  const handleChangeWeightBMR = (event, newValue) => {
+    setWeightBMR(newValue);
+  };
 
   return (
     <div className="full-container-dashboard">
@@ -111,10 +125,53 @@ export default function Dashboard() {
         </Paper>
       </div>
       <div className="bottom-container-dashboard">
+        {/* <Paper elevation={20} className={classes.paperB}>
+          <div className="calc-headings">
+            <h1>BMI</h1>
+          </div>
+        </Paper> */}
         <Paper elevation={20} className={classes.paperB}>
-
-        </Paper>
-        <Paper elevation={20} className={classes.paperB}>
+          <div className="calc-headings">
+            <h1>BMR &amp; BMI Calculator</h1>
+          </div>
+          <div className="calc-sliders">
+            <div className="calc-height-slider">
+              <p>Height:</p>
+              <Slider
+                className={classes.slider}
+                defaultValue={142}
+                aria-labelledby="discrete-slider-always"
+                valueLabelDisplay="on"
+                marks={marksWeight}
+                max={200}
+                min={120}
+                track={false}
+                value={heightBMR}
+                onChange={handleChangeHeightBMR}
+              />
+              <p></p>
+            </div>
+            <div className="calc-weight-slider">
+              <p>Weight:</p>
+              <Slider
+                className={classes.slider}
+                defaultValue={32}
+                aria-labelledby="discrete-slider-always"
+                valueLabelDisplay="on"
+                marks={marksHeight}
+                max={140}
+                min={20}
+                track={false}
+                value={weightBMR}
+                onChange={handleChangeWeightBMR}
+              />
+            </div>
+            <div className="calc-button">
+              <Button variant="outlined" color="primary" onClick={generate}>
+                Generate your BMR &amp; BMI
+          </Button>
+            </div>
+          </div>
 
         </Paper>
       </div>
@@ -123,6 +180,60 @@ export default function Dashboard() {
   )
 }
 
+
+const marksWeight = [
+  {
+    value: 120,
+    label: '120cm'
+  },
+  {
+    value: 140,
+    label: '140cm'
+  },
+  {
+    value: 160,
+    label: '160cm'
+  },
+  {
+    value: 180,
+    label: '180cm'
+  },
+  {
+    value: 200,
+    label: '200cm'
+  }
+];
+
+const marksHeight = [
+  {
+    value: 20,
+    label: '20kg'
+  },
+  {
+    value: 40,
+    label: '40kg'
+  },
+  {
+    value: 60,
+    label: '60kg'
+  },
+  {
+    value: 80,
+    label: '80kg'
+  },
+  {
+    value: 100,
+    label: '100kg'
+  },
+  {
+    value: 120,
+    label: '120kg'
+  },
+  {
+    value: 140,
+    label: '140kg'
+  }
+]
 
 const useStyles = makeStyles(theme => ({
   paperB: {
@@ -142,67 +253,8 @@ const useStyles = makeStyles(theme => ({
     fontSize: 30,
     border: '2px solid black'
   },
-
-}))
-
-
-{/*const useStyles = makeStyles(theme => ({
-  paperL: {
-    width: '95%',
-    height: '95%',
-    border: '1px solid black'
-  },
-
-  paperR: {
-    width: '95%',
-    height: '95%',
-  },
-
-  paperRT: {
-    width: '100%',
-    height: '49%',
-    border: '1px solid black'
-  },
-  paperRB: {
-    width: '100%',
-    height: '47.75%',
-    marginTop: '2.5%',
-    border: '1px solid black'
-  },
-  avatar: {
-    width: theme.spacing(20),
-    height: theme.spacing(20),
-    fontSize: 40,
-    border: '2px solid black'
+  slider: {
+    width: '75%',
   }
+
 }))
-
-
- <div className="full-container-dashboard">
-      <div className="left-container-dashboard">
-        <Paper elevation={20} className={classes.paperL}>
-          <div className="dashboard-profile-pic">
-            <Avatar alt="my-profile-pic"
-              alt="profile-pic"
-              src={pictureUrl}
-              className={classes.avatar}>
-              {initials}
-            </Avatar>
-          </div>
-          <div className="heading-dashboard">
-            <h1>{name}</h1>
-          </div>
-        </Paper>
-      </div>
-
-      <div className="right-container-dashboard">
-        <Paper elevation={0} className={classes.paperR}>
-          <Paper elevation={20} className={classes.paperRT}>
-
-          </Paper>
-          <Paper elevation={20} className={classes.paperRB}>
-
-          </Paper>
-        </Paper>
-      </div>
-    </div > */}
