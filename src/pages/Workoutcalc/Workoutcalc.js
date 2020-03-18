@@ -279,7 +279,3 @@ const marks = [
     label: 'the rock'
   }
 ];
-
-// Have the generate workout button write to the database both the given weight for each workout at the given
-// 10 reps, but also work out their 1 rep max ability for each. Also, store a time stamp against each generated
-// workout.
