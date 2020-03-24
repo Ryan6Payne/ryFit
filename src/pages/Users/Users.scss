@@ -1,3 +1,38 @@
-.not-admin {
-  padding-left: 10px;
+.page-container-users {
+  height: 92%;
+}
+
+.all-users-container {
+  display: flex;
+}
+
+.full-user-container {
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 10%;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.full-user-container h4 {
+  text-align: center;
+}
+
+.user-info-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.user-info-container p {
+  padding: 0;
+  padding-left: 5px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-info-container h5 {
+  padding: 0;
 }

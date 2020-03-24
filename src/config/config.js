@@ -62,7 +62,8 @@ class FB {
           heightIn: 0,
           isAdmin: false,
           pictureUrl: null,
-          location: null
+          location: null,
+          joined: new Date()
         });
     }
     catch (error) {

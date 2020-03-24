@@ -651,15 +651,15 @@ export default function Profile(props) {
                           <p>{workout.deadlift}</p>
                         </div>
                         <div className="section-profile-progress">
-                          <h6>Deadlift</h6>
+                          <h6>Bench Press</h6>
                           <p>{workout.benchPress}</p>
                         </div>
                         <div className="section-profile-progress">
-                          <h6>Deadlift</h6>
+                          <h6>Shoulder Press</h6>
                           <p>{workout.shoulderPress}</p>
                         </div>
                         <div className="section-profile-progress">
-                          <h6>Deadlift</h6>
+                          <h6>Squat</h6>
                           <p>{workout.squat}</p>
                         </div>
                       </div>
