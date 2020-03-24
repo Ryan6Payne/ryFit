@@ -637,8 +637,8 @@ export default function Profile(props) {
             </Typography>
 
             <div className="progress-profile-container">
+
               {
-                workouts &&
                 workouts.map(workout => {
                   let stamp = workout.timeStamp.toDate().toString()
                   stamp = moment(stamp).format('MMMM Do YYYY, h:mm:ss a')

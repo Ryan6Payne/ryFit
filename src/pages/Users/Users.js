@@ -10,9 +10,8 @@ export default function Profile(props) {
   const classes = useStyles()
   const { history } = props;
   const [users, setUsers] = useState([])
+  const [numUsers, setNumUsers] = useState(0)
 
-
-  //Get data from the Database then set the relevant local variables
   function getUsers() {
     const ref = FB.db.collection('users')
 
@@ -26,32 +25,24 @@ export default function Profile(props) {
     }).catch(error => console.log(error))
   }
 
-  /* function getWorkouts() {
-    const ref = FB.db.doc(`users/${FB.auth.currentUser.uid}`).collection("workouts")
-
-    ref.orderBy("timeStamp", "desc").limit(5)
-      .get()
-      .then(snapshot => {
-        const workoutsArr = []
-        snapshot.forEach(doc => {
-          const data = doc.data()
-          workoutsArr.push(data)
-        })
-        setWorkouts(workoutsArr)
-
-      }).catch(error => console.log(error))
-  } */
+  function userAmount() {
+    FB.db.collection("users").get().then(snap => {
+      let size = snap.size;
+      setNumUsers(size)
+    })
+  }
 
   useEffect(() => {
     getUsers();
+    userAmount()
   }, [])
-
-  function testButton() {
-    console.log(users)
-  }
 
   return (
     <div className="page-container-users">
+      <div className="users-heading-container">
+        <h2>We have {numUsers} users currently signed up</h2>
+
+      </div>
       <div className="all-users-container">
         {
           users &&
