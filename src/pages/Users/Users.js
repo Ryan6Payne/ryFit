@@ -48,7 +48,6 @@ export default function Profile(props) {
   return (
     <div className="page-container-users">
       <div className="users-heading-container">
-        <button onClick={test}>Test</button>
         <h2>We have {numUsers} users currently signed up</h2>
 
       </div>
@@ -62,8 +61,12 @@ export default function Profile(props) {
               <div className="full-user-container">
                 <h4>{user.fullName}</h4>
                 <div className="user-info-container">
-                  <h5>Joined:</h5>
-                  <p>{stamp}</p>
+                  <p className="user-info-sections">Joined:</p>
+                  <p> {stamp}</p>
+                </div>
+                <div className="user-info-container">
+                  <p className="user-info-sections">Email:</p>
+                  <p>{user.email}</p>
                 </div>
               </div>
             )

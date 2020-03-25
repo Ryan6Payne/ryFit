@@ -10,36 +10,40 @@
 .full-user-container {
   border: 1px solid black;
   border-radius: 15px;
-  width: 12%;
+  width: 15%;
   margin-left: 20px;
   margin-top: 20px;
+  height: 100px;
 }
 
 .full-user-container h4 {
   text-align: center;
   padding-top: 5px;
+  margin-bottom: 20px;
 }
 
 .user-info-container {
   display: flex;
   text-align: center;
   justify-content: center;
+  height: 20px;
+}
+
+.user-info-sections {
+  font-weight: bold;
+  padding-right: 4px;
 }
 
 .user-info-container p {
-  padding: 0;
-  padding-left: 5px;
+  margin: 0;
   font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.user-info-container h5 {
-  padding: 0;
-}
-
 .users-heading-container h2 {
   margin-left: 20px;
-  margin-top: 40px;
+  margin-top: 0;
+  padding-top: 40px;
 }
