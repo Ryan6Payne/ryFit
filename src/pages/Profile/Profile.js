@@ -6,7 +6,7 @@ import { Badge } from '@material-ui/core';
 import { Avatar } from '@material-ui/core';
 import ImageIcon from '@material-ui/icons/Image';
 import { IconButton } from '@material-ui/core';
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from '@material-ui/core';
 import { MenuItem, Select, FormControl } from '@material-ui/core';
 import { Button } from '@material-ui/core';
@@ -69,13 +69,6 @@ export default function Profile(props) {
         .onSnapshot(documents => {
           setPictureUrl(documents.data()["pictureUrl"])
         })
-      /* FB.db.collection("users")
-        .doc(user.uid)
-        .collection("workouts")
-        .doc("Latest-Workout")
-        .onSnapshot(documents => {
-          setDeadlift(documents.data()["deadlift"])
-        }) */
     })
   }
 
@@ -94,28 +87,6 @@ export default function Profile(props) {
     })
   }
 
-
-  /* workouts */
-  /* function getWorkouts() {
-    const ref = FB.db.doc(`users/${FB.auth.currentUser.uid}`).collection("workouts")
-
-    ref.orderBy("timeStamp", "desc").limit(5)
-      .get()
-      .then(snapshot => {
-
-
-        snapshot.forEach(doc => {
-          const week = []
-
-
-          week.push(doc.data())
-
-          setWorkouts(oldArray => [...oldArray, week])
-        })
-        console.log(workouts)
-      }).catch(error => console.log(error))
-  } */
-
   function getWorkouts() {
     const ref = FB.db.doc(`users/${FB.auth.currentUser.uid}`).collection("workouts")
 
@@ -130,10 +101,6 @@ export default function Profile(props) {
         setWorkouts(workoutsArr)
 
       }).catch(error => console.log(error))
-  }
-
-  function testButton() {
-    console.log(workouts)
   }
 
   useEffect(() => {
@@ -637,7 +604,6 @@ export default function Profile(props) {
             </Typography>
 
             <div className="progress-profile-container">
-
               {
                 workouts.map(workout => {
                   let stamp = workout.timeStamp.toDate().toString()
@@ -674,7 +640,6 @@ export default function Profile(props) {
     </div >
   );
 }
-
 
 const useStyles = makeStyles(theme => ({
 

@@ -7,7 +7,6 @@ import FB from '../../config/config';
 import { Slider } from '@material-ui/core';
 import { Button } from '@material-ui/core'
 
-
 export default function Dashboard() {
   const classes = useStyles();
   const [name, setName] = useState('');
@@ -15,7 +14,7 @@ export default function Dashboard() {
   const [pictureUrl, setPictureUrl] = useState(null);
   const [location, setLocation] = useState('');
   const [dobYear, setDobYear] = useState('');
-  const [admin, setAdmin] = useState(false)
+  const [admin, setAdmin] = useState(false);
 
   const [age, setAge] = useState('');
 
@@ -72,11 +71,15 @@ export default function Dashboard() {
   }, []);
 
   function generate() {
+
+    const heightInMeters = heightBMR / 100
+    const floatBMI = parseFloat(weightBMR / (heightInMeters * heightInMeters)).toFixed(2)
+
     if (gender == true) {
-      console.log("male")
       setBMR(Math.round(66.5 + (13.75 * weightBMR) + (5.003 * heightBMR) - (6.755 * age)))
-      const heightInMeters = heightBMR / 100
-      const floatBMI = parseFloat(weightBMR / (heightInMeters * heightInMeters)).toFixed(2)
+      setBMI(floatBMI)
+    } else if (gender == false) {
+      setBMR(Math.round(655.1 + (9.563 * weightBMR) + (1.85 * heightBMR) - (4.676 * age)))
       setBMI(floatBMI)
     }
   }
@@ -130,11 +133,6 @@ export default function Dashboard() {
         </Paper>
       </div>
       <div className="bottom-container-dashboard">
-        {/* <Paper elevation={20} className={classes.paperB}>
-          <div className="calc-headings">
-            <h1>BMI</h1>
-          </div>
-        </Paper> */}
         <Paper elevation={20} className={classes.paperB}>
           <div className="calc-headings">
             <h1>BMR &amp; BMI Calculator</h1>
@@ -154,7 +152,6 @@ export default function Dashboard() {
                 value={heightBMR}
                 onChange={handleChangeHeightBMR}
               />
-
             </div>
             <div className="calc-weight-slider">
               <p>Weight:</p>
@@ -177,14 +174,12 @@ export default function Dashboard() {
           </Button>
             </div>
           </div>
-
         </Paper>
       </div>
     </div >
 
   )
 }
-
 
 const marksWeight = [
   {

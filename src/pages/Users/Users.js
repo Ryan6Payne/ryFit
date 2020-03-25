@@ -10,6 +10,7 @@ export default function Profile(props) {
   const classes = useStyles()
   const { history } = props;
   const [users, setUsers] = useState([])
+  const [usersId, setUsersId] = useState([])
   const [numUsers, setNumUsers] = useState(0)
 
   function getUsers() {
@@ -17,11 +18,14 @@ export default function Profile(props) {
 
     ref.get().then(snapshot => {
       const usersArr = []
+      const usersIdArr = []
       snapshot.forEach(doc => {
         const data = doc.data()
         usersArr.push(data)
+        usersIdArr.push(doc.id)
       })
       setUsers(usersArr)
+      setUsersId(usersIdArr)
     }).catch(error => console.log(error))
   }
 
@@ -32,6 +36,10 @@ export default function Profile(props) {
     })
   }
 
+  function test() {
+    console.log(usersId)
+  }
+
   useEffect(() => {
     getUsers();
     userAmount()
@@ -40,6 +48,7 @@ export default function Profile(props) {
   return (
     <div className="page-container-users">
       <div className="users-heading-container">
+        <button onClick={test}>Test</button>
         <h2>We have {numUsers} users currently signed up</h2>
 
       </div>
@@ -49,7 +58,6 @@ export default function Profile(props) {
           users.map(user => {
             let stamp = user.joined.toDate().toString()
             stamp = moment(stamp).format('MMMM Do YYYY')
-            console.log(stamp)
             return (
               <div className="full-user-container">
                 <h4>{user.fullName}</h4>

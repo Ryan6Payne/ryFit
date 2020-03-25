@@ -14,25 +14,28 @@ import './Registerprof.scss';
 
 function RegisterProf(props) {
   const { history } = props;
-  const [heightFt, setHeightFt] = useState('');
-  const [heightIn, setHeightIn] = useState('');
-  const [currentWeight, setCurrentWeight] = useState('');
-  const [goalWeight, setGoalWeight] = useState('');
-  const [gender, setGender] = useState('');
-  const [dobDay, setDobDay] = useState('');
-  const [dobMonth, setDobMonth] = useState('');
-  const [dobYear, setDobYear] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [location, setLocation] = useState('');
+  const [heightFt, setHeightFt] = useState("");
+  const [heightIn, setHeightIn] = useState("");
+  const [currentWeight, setCurrentWeight] = useState("");
+  const [goalWeight, setGoalWeight] = useState("");
+  const [gender, setGender] = useState("");
+  const [dobDay, setDobDay] = useState("");
+  const [dobMonth, setDobMonth] = useState("");
+  const [dobYear, setDobYear] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [location, setLocation] = useState("");
   const firstName = fullName.split(' ')[0];
   const secondName = fullName.split(' ')[1];
 
   async function registerUser() {
     try {
-      await FB.updateUser(fullName, firstName, secondName, parseInt(heightFt), parseInt(heightIn), parseInt(currentWeight),
-        parseInt(goalWeight), gender, dobDay, dobMonth, dobYear, location);
-      await FB.updateName(fullName);
-      history.push('/dashboard')
+      if (heightFt == "" || heightIn == "" || currentWeight == "" || goalWeight == "" || gender == "" || dobDay == "" || dobMonth == "" || dobYear == "" || fullName == "" || location == "") {
+        alert("Something is missing")
+      } else {
+        await FB.updateUser(fullName, firstName, secondName, parseInt(heightFt), parseInt(heightIn), parseInt(currentWeight), parseInt(goalWeight), gender, dobDay, dobMonth, dobYear, location);
+        await FB.updateName(fullName);
+        history.push('/dashboard')
+      }
     } catch (error) {
       alert(error.message);
     }
