@@ -34,8 +34,8 @@ export default function Dashboard() {
     FB.isLoggedIn().then(user => {
       FB.db.collection("users")
         .doc(user.uid)
-        .onSnapshot(documents => {
-          setPictureUrl(documents.data()["pictureUrl"])
+        .onSnapshot(doc => {
+          setPictureUrl(doc.data()["pictureUrl"])
         })
     })
   }

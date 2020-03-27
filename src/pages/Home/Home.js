@@ -13,7 +13,7 @@ function Home(props) {
         </div>
         <div className="content">
           <div className="home-inspire">
-            <h2 className="home-h2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam varius mauris in orci cursus ornare. Pellentesque pharetra urna arcu, eu vehicula justo tincidunt non. </h2>
+            <h2 className="home-h2">Explore your ability. Find out your health statistics and generate a workout today.</h2>
           </div>
           <div className="button-section">
             <Link className="link" to="/register">
