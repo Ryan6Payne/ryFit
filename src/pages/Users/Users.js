@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import FB from '../../config/config';
 import { makeStyles } from "@material-ui/core/styles"
 import moment from 'moment';
+import { TextField } from '@material-ui/core';
+import { Button } from '@material-ui/core';
+
 
 import './Users.scss';
 
@@ -10,8 +13,8 @@ export default function Profile(props) {
   const classes = useStyles()
   const { history } = props;
   const [users, setUsers] = useState([])
-  const [usersId, setUsersId] = useState([])
   const [numUsers, setNumUsers] = useState(0)
+  const [userEmail, setUserEmail] = useState("")
 
   function getUsers() {
     const ref = FB.db.collection('users')
@@ -22,10 +25,9 @@ export default function Profile(props) {
       snapshot.forEach(doc => {
         const data = doc.data()
         usersArr.push(data)
-        usersIdArr.push(doc.id)
+
       })
       setUsers(usersArr)
-      setUsersId(usersIdArr)
     }).catch(error => console.log(error))
   }
 
@@ -36,8 +38,16 @@ export default function Profile(props) {
     })
   }
 
-  function test() {
-    console.log(usersId)
+  function deleteUser(userEmail) {
+
+    FB.getUserByEmail(userEmail).then(snapshot => {
+      snapshot.forEach(doc => {
+        let uid = doc.id
+        FB.deleteUser(uid)
+        alert(`User ${userEmail} has been deleted!`)
+        history.push("/dashboard")
+      })
+    })
   }
 
   useEffect(() => {
@@ -49,7 +59,16 @@ export default function Profile(props) {
     <div className="page-container-users">
       <div className="users-heading-container">
         <h2>We have {numUsers} users currently signed up</h2>
-
+      </div>
+      <div className="user-delete-container">
+        <TextField
+          className={classes.TextField}
+          value={userEmail}
+          onChange={e => setUserEmail(e.target.value)}
+          placeholder="Enter the email of the account you want to delete"
+          variant="outlined"
+        />
+        <Button onClick={() => deleteUser(userEmail)} variant="outlined" color="secondary">Delete User</Button>
       </div>
       <div className="all-users-container">
         {
@@ -79,4 +98,8 @@ export default function Profile(props) {
 
 
 const useStyles = makeStyles(theme => ({
+  TextField: {
+    width: '380px',
+    marginRight: '20px'
+  },
 }))

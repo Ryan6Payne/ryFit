@@ -97,6 +97,21 @@ class FB {
     }
   }
 
+  /* CRU(D) functionality for users */
+  getUserByEmail(email) {
+    let ref = this.db.collection("users")
+    let user = ref.where("email", "==", email).get()
+    return user;
+  }
+
+  deleteUser(uid) {
+    try {
+      this.db.collection("users").doc(`${uid}`).delete()
+    } catch (err) {
+      console.err("Error delete document: ", err)
+    }
+  }
+
   /* Image handling (Firebase Storage) */
   async pictureUpload(image) {
     try {
