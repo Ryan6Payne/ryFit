@@ -84,7 +84,7 @@ export default function WorkoutCalc(props) {
     }
   };
 
-  async function addWorkoutToDB() {
+  function addWorkoutToDB() {
     try {
       if (deadlift === 0) {
         alert("Ensure you have entered a deadlift value")
@@ -95,7 +95,7 @@ export default function WorkoutCalc(props) {
       } else if (squat === 0) {
         alert("Ensure you have entered a squat value")
       } else {
-        await FB.addWorkout(parseInt(deadlift), parseInt(benchPress), parseInt(shoulderPress), parseInt(squat))
+        FB.addWorkout(parseInt(deadlift), parseInt(benchPress), parseInt(shoulderPress), parseInt(squat), parseInt(currentWeight))
         history.push('./Workout');
       }
     } catch (error) {
@@ -116,7 +116,7 @@ export default function WorkoutCalc(props) {
           <div className="weight-workoutCalc">
             <div className="tooltip">
               <span class="tooltiptext">If this weight is incorrect, change it on your profile!</span>
-              <TextField variant="outlined" disabled="true" className="weighttf-workoutCalc" value={currentWeight + "kg"} label="Body Weight" />
+              <TextField variant="outlined" disabled="true" className="weighttf-workoutCalc" value={currentWeight + "Kg"} label="Body Weight" />
             </div>
           </div>
 
@@ -140,7 +140,6 @@ export default function WorkoutCalc(props) {
                 onChange={handleInputChangeDL}
                 onBlur={handleBlurDL}
                 disableUnderline={false}
-                label="kg"
                 inputProps={{
                   step: 10,
                   min: 0,
@@ -149,7 +148,7 @@ export default function WorkoutCalc(props) {
                   'aria-labelledby': 'input-slider',
                 }}
               />
-              <p>kg</p>
+              <p>Kg</p>
             </div>
             <p>for</p>
             <p>10 Reps</p>
@@ -183,7 +182,7 @@ export default function WorkoutCalc(props) {
                   'aria-labelledby': 'input-slider',
                 }}
               />
-              <p>kg</p>
+              <p>Kg</p>
             </div>
             <p>for</p>
             <p>10 Reps</p>
@@ -217,7 +216,7 @@ export default function WorkoutCalc(props) {
                   'aria-labelledby': 'input-slider',
                 }}
               />
-              <p>kg</p>
+              <p>Kg</p>
             </div>
             <p>for</p>
             <p>10 Reps</p>
@@ -251,7 +250,7 @@ export default function WorkoutCalc(props) {
                   'aria-labelledby': 'input-slider',
                 }}
               />
-              <p>kg</p>
+              <p>Kg</p>
             </div>
             <p>for</p>
             <p>10 Reps</p>

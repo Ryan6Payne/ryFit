@@ -90,7 +90,7 @@ export default function Profile(props) {
   function getWorkouts() {
     const ref = FB.db.doc(`users/${FB.auth.currentUser.uid}`).collection("workouts")
 
-    ref.orderBy("timeStamp", "desc").limit(5)
+    ref.orderBy("timeStamp", "desc").limit(6)
       .get()
       .then(snapshot => {
         const workoutsArr = []
@@ -616,22 +616,23 @@ export default function Profile(props) {
                   return (
                     <div className="profile-workout-container">
                       <h4>{stamp}</h4>
+                      <h5>Body Weight: {workout.bodyWeight}Kg</h5>
                       <div className="progress-profile-progress">
                         <div className="section-profile-progress">
                           <h6>Deadlift</h6>
-                          <p>{workout.deadlift}</p>
+                          <p>{workout.deadlift}Kg</p>
                         </div>
                         <div className="section-profile-progress">
                           <h6>Bench Press</h6>
-                          <p>{workout.benchPress}</p>
+                          <p>{workout.benchPress}Kg</p>
                         </div>
                         <div className="section-profile-progress">
                           <h6>Shoulder Press</h6>
-                          <p>{workout.shoulderPress}</p>
+                          <p>{workout.shoulderPress}Kg</p>
                         </div>
                         <div className="section-profile-progress">
                           <h6>Squat</h6>
-                          <p>{workout.squat}</p>
+                          <p>{workout.squat}Kg</p>
                         </div>
                       </div>
                     </div>

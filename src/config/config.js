@@ -146,7 +146,7 @@ class FB {
       })
   }
 
-  addWorkout(deadlift, benchPress, shoulderPress, squat) {
+  addWorkout(deadlift, benchPress, shoulderPress, squat, bodyWeight) {
     var user = this.auth.currentUser;
     var timeStamp = new Date() //moment().format('MMMM Do YYYY, h:mm:ss a')
 
@@ -160,6 +160,7 @@ class FB {
           benchPress: benchPress,
           shoulderPress: shoulderPress,
           squat: squat,
+          bodyWeight: bodyWeight,
           timeStamp: timeStamp
         })
     } catch (error) {

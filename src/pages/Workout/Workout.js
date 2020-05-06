@@ -126,10 +126,10 @@ export default function Workout() {
               <h1>Workout</h1>
             </div>
             <div className="inner-content-workout">
-              <p>Deadlift: {deadlift}</p>
-              <p>Bench Press: {benchPress}</p>
-              <p>Shoulder Press: {shoulderPress}</p>
-              <p>Squat: {squat}</p>
+              <p>Deadlift: {deadlift}kg at 10 reps</p>
+              <p>Bench Press: {benchPress}kg at 10 reps</p>
+              <p>Shoulder Press: {shoulderPress}kg at 10 reps</p>
+              <p>Squat: {squat}kg at 10 reps</p>
               <div>
                 <Select
                   labelId="gender-select"
@@ -219,10 +219,10 @@ export default function Workout() {
               <h1>Workout</h1>
             </div>
             <div className="inner-content-workout">
-              <p>Deadlift: {deadlift}</p>
-              <p>Bench Press: {benchPress}</p>
-              <p>Shoulder Press: {shoulderPress}</p>
-              <p>Squat: {squat}</p>
+              <p>Deadlift: {deadlift}kg at 10 reps</p>
+              <p>Bench Press: {benchPress}kg at 10 reps</p>
+              <p>Shoulder Press: {shoulderPress}kg at 10 reps</p>
+              <p>Squat: {squat}kg at 10 reps</p>
               <div>
                 <Select
                   labelId="gender-select"
