@@ -22,7 +22,7 @@ function Register(props) {
         await FB.register(email, password);
         history.push('/registerprof');
       } catch (error) {
-        alert(error.message);
+        console.log(error)
       }
     } else {
       alert("Your passwords do not match")

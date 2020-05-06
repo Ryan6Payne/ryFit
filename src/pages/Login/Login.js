@@ -19,7 +19,7 @@ function Login(props) {
       await FB.login(email, password);
       history.push('/dashboard');
     } catch (error) {
-      alert(error.message);
+      console.log(error)
     }
   }
 

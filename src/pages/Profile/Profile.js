@@ -111,15 +111,20 @@ export default function Profile(props) {
 
   async function updateProfile() {
     try {
-      await FB.updateUser(fullName, firstNameSplit, secondNameSplit, heightFt, heightIn, currentWeight,
-        goalWeight, gender, dobDay, dobMonth, dobYear, location);
-      await FB.updateName(fullName);
-      alert("You have updated your profile!");
-      history.push('/dashboard');
+      if (heightFt == "" || heightIn == "" || currentWeight == "" || goalWeight == "" || gender == "" || dobDay == "" || dobMonth == "" || dobYear == "" || fullName == "" || location == "") {
+        alert("Please ensure you have entered all details before updating")
+      } else {
+        await FB.updateUser(fullName, firstNameSplit, secondNameSplit, heightFt, heightIn, currentWeight,
+          goalWeight, gender, dobDay, dobMonth, dobYear, location);
+        await FB.updateName(fullName);
+        alert("You have updated your profile!");
+        history.push('/dashboard');
+      }
     } catch (error) {
       alert(error.message);
     }
   }
+
 
   const pictureUpload = async event => {
     //Get the uploaded picture from local

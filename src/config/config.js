@@ -1,6 +1,4 @@
 import Firebase from 'firebase';
-import moment from 'moment';
-import { hydrate } from 'react-dom';
 
 const firebaseConfiguration = {
   apiKey: 'AIzaSyAVcSaQwD31GIwSBi0LteRefgKfsYFe7yQ',
@@ -31,15 +29,21 @@ class FB {
     const user = await this.auth
       .signInWithEmailAndPassword(email, password)
       .catch(error => {
-        console.log(error);
+        console.log(error)
+        alert(error)
       });
     return user;
   }
 
-  register(email, password) {
-    return this.auth
+  async register(email, password) {
+    const reg = await this.auth
       .createUserWithEmailAndPassword(email, password)
-      .then(this.addUser);
+      .then(this.addUser)
+      .catch(error => {
+        console.log(error)
+        alert(error)
+      })
+    return reg;
   }
 
   /* called as part of the registration process to initialize database document (auth uid == db uid)*/

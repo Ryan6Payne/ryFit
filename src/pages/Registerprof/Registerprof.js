@@ -30,7 +30,7 @@ function RegisterProf(props) {
   async function registerUser() {
     try {
       if (heightFt == "" || heightIn == "" || currentWeight == "" || goalWeight == "" || gender == "" || dobDay == "" || dobMonth == "" || dobYear == "" || fullName == "" || location == "") {
-        alert("Something is missing")
+        alert("Please ensure you have entered all details before submitting")
       } else {
         await FB.updateUser(fullName, firstName, secondName, parseInt(heightFt), parseInt(heightIn), parseInt(currentWeight), parseInt(goalWeight), gender, dobDay, dobMonth, dobYear, location);
         await FB.updateName(fullName);
