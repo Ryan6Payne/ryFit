@@ -55,32 +55,32 @@ export default function WorkoutCalc(props) {
   const handleBlurDL = () => {
     if (valueDL < 0) {
       setValueDL(0);
-    } else if (valueDL > 200) {
-      setValueDL(200);
+    } else if (valueDL > 210) {
+      setValueDL(210);
     }
   };
 
   const handleBlurBP = () => {
     if (valueBP < 0) {
       setValueBP(0);
-    } else if (valueBP > 200) {
-      setValueBP(200);
+    } else if (valueBP > 210) {
+      setValueBP(210);
     }
   };
 
   const handleBlurSP = () => {
     if (valueSP < 0) {
       setValueSP(0);
-    } else if (valueSP > 200) {
-      setValueSP(200);
+    } else if (valueSP > 210) {
+      setValueSP(210);
     }
   };
 
   const handleBlurS = () => {
     if (valueS < 0) {
       setValueS(0);
-    } else if (valueS > 200) {
-      setValueS(200);
+    } else if (valueS > 210) {
+      setValueS(210);
     }
   };
 
@@ -106,13 +106,20 @@ export default function WorkoutCalc(props) {
   return (
     <div className="full-container-workoutCalc">
       <div className="left-container-workoutCalc">
-        <div className="left-content-workoutCalc">
+        <div className="workout-summary">
+          <h1>Workout Calculator</h1>
+          <p>This is the workout calculator. Please enter your ability at 10 reps each exercise. The application will
+          use this information to generate a workout for you.
+          </p>
+        </div>
+        <div className="left-generate-workoutCalc">
           <div className="weight-workoutCalc">
             <div className="tooltip">
               <span class="tooltiptext">If this weight is incorrect, change it on your profile!</span>
-              <TextField variant="outlined" disabled="true" className="weighttf-workoutCalc" value={currentWeight} label="Weight" />
+              <TextField variant="outlined" disabled="true" className="weighttf-workoutCalc" value={currentWeight + "kg"} label="Body Weight" />
             </div>
           </div>
+
           <div className="generate-workout-button">
             <Button variant="outlined" color="primary" onClick={addWorkoutToDB} type="submit">
               Generate Workout
@@ -126,27 +133,31 @@ export default function WorkoutCalc(props) {
             <h1>Deadlift</h1>
           </div>
           <div className="lift-content">
-            <Input
-              className={classes.input}
-              value={valueDL}
-              onChange={handleInputChangeDL}
-              onBlur={handleBlurDL}
-              disableUnderline={false}
-              inputProps={{
-                step: 10,
-                min: 0,
-                max: 200,
-                type: 'number',
-                'aria-labelledby': 'input-slider',
-              }}
-            />
+            <div className="lift-input">
+              <Input
+                className={classes.input}
+                value={valueDL}
+                onChange={handleInputChangeDL}
+                onBlur={handleBlurDL}
+                disableUnderline={false}
+                label="kg"
+                inputProps={{
+                  step: 10,
+                  min: 0,
+                  max: 210,
+                  type: 'number',
+                  'aria-labelledby': 'input-slider',
+                }}
+              />
+              <p>kg</p>
+            </div>
             <p>for</p>
             <p>10 Reps</p>
             <Slider
               value={typeof valueDL === 'number' ? valueDL : 0}
               className={classes.slider}
               disabled
-              max={200}
+              max={210}
               marks={marks}
               track={false}
             />
@@ -157,27 +168,30 @@ export default function WorkoutCalc(props) {
             <h1>Bench Press</h1>
           </div>
           <div className="lift-content">
-            <Input
-              className={classes.input}
-              value={valueBP}
-              onChange={handleInputChangeBP}
-              onBlur={handleBlurBP}
-              disableUnderline={false}
-              inputProps={{
-                step: 10,
-                min: 0,
-                max: 200,
-                type: 'number',
-                'aria-labelledby': 'input-slider',
-              }}
-            />
+            <div className="lift-input">
+              <Input
+                className={classes.input}
+                value={valueBP}
+                onChange={handleInputChangeBP}
+                onBlur={handleBlurBP}
+                disableUnderline={false}
+                inputProps={{
+                  step: 10,
+                  min: 0,
+                  max: 210,
+                  type: 'number',
+                  'aria-labelledby': 'input-slider',
+                }}
+              />
+              <p>kg</p>
+            </div>
             <p>for</p>
             <p>10 Reps</p>
             <Slider
               value={typeof valueBP === 'number' ? valueBP : 0}
               className={classes.slider}
               disabled
-              max={200}
+              max={210}
               marks={marks}
               track={false}
             />
@@ -188,27 +202,30 @@ export default function WorkoutCalc(props) {
             <h1>Shoulder Press</h1>
           </div>
           <div className="lift-content">
-            <Input
-              className={classes.input}
-              value={valueSP}
-              onChange={handleInputChangeSP}
-              onBlur={handleBlurSP}
-              disableUnderline={false}
-              inputProps={{
-                step: 10,
-                min: 0,
-                max: 200,
-                type: 'number',
-                'aria-labelledby': 'input-slider',
-              }}
-            />
+            <div className="lift-input">
+              <Input
+                className={classes.input}
+                value={valueSP}
+                onChange={handleInputChangeSP}
+                onBlur={handleBlurSP}
+                disableUnderline={false}
+                inputProps={{
+                  step: 10,
+                  min: 0,
+                  max: 210,
+                  type: 'number',
+                  'aria-labelledby': 'input-slider',
+                }}
+              />
+              <p>kg</p>
+            </div>
             <p>for</p>
             <p>10 Reps</p>
             <Slider
               value={typeof valueSP === 'number' ? valueSP : 0}
               className={classes.slider}
               disabled
-              max={200}
+              max={210}
               marks={marks}
               track={false}
             />
@@ -219,27 +236,30 @@ export default function WorkoutCalc(props) {
             <h1>Squat</h1>
           </div>
           <div className="lift-content">
-            <Input
-              className={classes.input}
-              value={valueS}
-              onChange={handleInputChangeS}
-              onBlur={handleBlurS}
-              disableUnderline={false}
-              inputProps={{
-                step: 10,
-                min: 0,
-                max: 200,
-                type: 'number',
-                'aria-labelledby': 'input-slider',
-              }}
-            />
+            <div className="lift-input">
+              <Input
+                className={classes.input}
+                value={valueS}
+                onChange={handleInputChangeS}
+                onBlur={handleBlurS}
+                disableUnderline={false}
+                inputProps={{
+                  step: 10,
+                  min: 0,
+                  max: 210,
+                  type: 'number',
+                  'aria-labelledby': 'input-slider',
+                }}
+              />
+              <p>kg</p>
+            </div>
             <p>for</p>
             <p>10 Reps</p>
             <Slider
               value={typeof valueS === 'number' ? valueS : 0}
               className={classes.slider}
               disabled
-              max={200}
+              max={210}
               marks={marks}
               track={false}
             />
@@ -252,8 +272,9 @@ export default function WorkoutCalc(props) {
 
 const useStyles = makeStyles({
   input: {
-    width: '20%',
+    width: '80px',
     fontSize: 19,
+    textAlign: 'center'
   },
   slider: {
     width: '80%',
@@ -264,18 +285,18 @@ const useStyles = makeStyles({
 const marks = [
   {
     value: 0,
-    label: 'beginner'
+    label: 'Beginner'
   },
   {
     value: 70,
-    label: 'intermediate'
+    label: 'Intermediate'
   },
   {
     value: 140,
-    label: 'you\'re pro'
+    label: 'Advanced'
   },
   {
-    value: 190,
-    label: 'the rock'
+    value: 210,
+    label: 'Expert'
   }
 ];

@@ -9,10 +9,6 @@
   padding: 0;
   margin-right: 0;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .right-container-workoutCalc {
@@ -32,12 +28,14 @@
   border: 1px solid black;
 }
 
-.left-content-workoutCalc {
+.left-generate-workoutCalc {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   width: 50%;
+  margin: auto;
+  padding-top: 200px;
 }
 
 .generate-workout-button {
@@ -49,7 +47,7 @@
 }
 
 .weighttf-workoutCalc {
-  width: 80px;
+  width: 120px;
 }
 
 .tooltip {
@@ -86,4 +84,36 @@
 
 .slider-workoutCalc {
   width: 200px;
+}
+
+.lift-input {
+  display: inline-flex;
+}
+
+.lift-input p {
+  padding: 0;
+  padding-top: 10px;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+.workout-summary {
+  width: 100%;
+  padding-top: 50px;
+}
+
+.workout-summary p {
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  padding-left: 20px;
+}
+
+.workout-summary h1 {
+  width: 100%;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  margin: 0;
+  text-align: center;
+  font-family: 'Noto Sans HK', sans-serif;
 }
