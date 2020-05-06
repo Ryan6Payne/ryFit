@@ -18,7 +18,6 @@ export default function Profile(props) {
 
   function getUsers() {
     const ref = FB.db.collection('users')
-
     ref.get().then(snapshot => {
       const usersArr = []
       const usersIdArr = []
@@ -45,7 +44,7 @@ export default function Profile(props) {
         let uid = doc.id
         FB.deleteUser(uid)
         alert(`User ${userEmail} has been deleted!`)
-        history.push("/dashboard")
+        window.location.reload(false);
       })
     })
   }
