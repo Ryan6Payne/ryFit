@@ -11,9 +11,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default function WorkoutCalc(props) {
 
+  const { history } = props;
   const classes = useStyles();
   const [currentWeight, setCurrentWeight] = useState('');
-  const { history } = props;
+  const [numWorkouts, setNumWorkouts] = useState(0)
 
   //Final values
   const [deadlift, setDeadlift] = useState(0);
@@ -29,6 +30,7 @@ export default function WorkoutCalc(props) {
 
   useEffect(() => {
     FB.getUserField("currentWeight").then(setCurrentWeight)
+    numOfWorkouts();
   }, [])
 
   const handleInputChangeDL = event => {
@@ -84,6 +86,16 @@ export default function WorkoutCalc(props) {
     }
   };
 
+  /* Calculate the amount of workouts the user has done */
+  function numOfWorkouts() {
+    FB.isLoggedIn().then(user => {
+      FB.db.collection("users").doc(user.uid).collection("workouts").get().then(snap => {
+        let amount = snap.size;
+        setNumWorkouts(amount)
+      })
+    })
+  }
+
   function addWorkoutToDB() {
     try {
       if (deadlift === 0) {
@@ -96,6 +108,7 @@ export default function WorkoutCalc(props) {
         alert("Ensure you have entered a squat value")
       } else {
         FB.addWorkout(parseInt(deadlift), parseInt(benchPress), parseInt(shoulderPress), parseInt(squat), parseInt(currentWeight))
+        FB.addWorkoutAmount(parseInt(numWorkouts + 1))
         history.push('./Workout');
       }
     } catch (error) {

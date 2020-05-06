@@ -87,6 +87,10 @@ export default function Profile(props) {
                   <p className="user-info-sections">Email:</p>
                   <p>{user.email}</p>
                 </div>
+                <div className="user-info-container">
+                  <p className="user-info-sections">Generated Workouts:</p>
+                  <p>{user.workouts}</p>
+                </div>
               </div>
             )
           })

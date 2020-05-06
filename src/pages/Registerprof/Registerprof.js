@@ -18,7 +18,7 @@ function RegisterProf(props) {
   const [heightIn, setHeightIn] = useState("");
   const [currentWeight, setCurrentWeight] = useState("");
   const [goalWeight, setGoalWeight] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState(null);
   const [dobDay, setDobDay] = useState("");
   const [dobMonth, setDobMonth] = useState("");
   const [dobYear, setDobYear] = useState("");
@@ -29,7 +29,7 @@ function RegisterProf(props) {
 
   async function registerUser() {
     try {
-      if (heightFt == "" || heightIn == "" || currentWeight == "" || goalWeight == "" || gender == "" || dobDay == "" || dobMonth == "" || dobYear == "" || fullName == "" || location == "") {
+      if (heightFt == "" || heightIn == "" || currentWeight == "" || goalWeight == "" || gender == null || dobDay == "" || dobMonth == "" || dobYear == "" || fullName == "" || location == "") {
         alert("Please ensure you have entered all details before submitting")
       } else {
         await FB.updateUser(fullName, firstName, secondName, parseInt(heightFt), parseInt(heightIn), parseInt(currentWeight), parseInt(goalWeight), gender, dobDay, dobMonth, dobYear, location);

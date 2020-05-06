@@ -67,7 +67,8 @@ class FB {
           isAdmin: false,
           pictureUrl: null,
           location: null,
-          joined: new Date()
+          joined: new Date(),
+          workouts: 0,
         });
     }
     catch (error) {
@@ -95,6 +96,19 @@ class FB {
           heightFt: heightFt,
           heightIn: heightIn,
           location: location
+        })
+    } catch (error) {
+      console.error("Error updating document: ", error);
+    }
+  }
+
+  addWorkoutAmount(numOfWorkouts) {
+    let user = this.auth.currentUser;
+    try {
+      return this.db.collection("users")
+        .doc(`${user.uid}`)
+        .update({
+          workouts: numOfWorkouts,
         })
     } catch (error) {
       console.error("Error updating document: ", error);
