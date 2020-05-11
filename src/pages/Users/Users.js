@@ -8,7 +8,7 @@ import { Button } from '@material-ui/core';
 
 import './Users.scss';
 
-export default function Profile(props) {
+export default function Users(props) {
 
   const classes = useStyles()
   const { history } = props;
